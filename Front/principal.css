@@ -1,0 +1,74 @@
+html {
+    height: 100vh;
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(#fff,#fefefe,#eaeaea);
+
+}
+.wrapper-boxes{
+    max-width: 990px;
+    background: rgba(0,0,0,0.10);
+    height: 200px;
+    margin: 20px auto;
+    display: flex;
+    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    flex-direction: row;
+    cursor: pointer;
+    margin-bottom: 100px;
+}
+
+.box {
+    position: relative;
+    height: 100%;
+    flex: 1;
+    background-position: left;
+    background-size: cover;
+    transition: .5s;  
+    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+
+}
+.box:hover{
+    flex:1.5;
+}
+
+.a1{
+    background-image: url("http://acn.ucentral.co/images/BANNER-SALUD-FÍSICA-COMPLETO.png");
+
+}
+
+.a2{
+    background-image: url("http://www.unsl.edu.ar/application/assets/img/noticias/dospu2.jpg");
+
+}
+.a3{
+    background-image: url("https://www.aenus.es/wp-content/uploads/2014/09/Fotolia_41231054_Subscription_XXL.jpg");    
+}
+
+p{
+    font-weight: normal;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.box-text{
+    position: absolute;
+    bottom: 0;
+    opacity: 1;
+    padding: 10px;
+
+}
+
+h1 {
+    width: 250px;
+    text-align: center;
+    margin: 100px auto 20px auto;
+}
+
+/*  Metodo que funciona cuando la pantalla tiene resolucion max-width'*/
+@media screen and (max-width:800px){
+
+}
