@@ -5,6 +5,13 @@ html {
     height: 100vh;
 
 }
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 body {
     padding: 0;
@@ -15,32 +22,81 @@ body {
 }
 .wrapper-header{
     background-image: url("https://www.altoastral.com.br/wp-content/uploads/2016/09/familia-feliz-4.jpg");
-    padding-bottom: 50px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
+    height: 400px;
 
+
+}
+header{
+    background-color: rgba(0,0,0,0.2);
+    
 }
 .wrapper-nav-bar{
     display: flex;
-    height: 100%;
-    flex-direction: row;
-    padding: 5px;
+    margin: 30px 10px auto;
 
 }
+/* Barra de Navegacion */
+
 .nav-bar{
-    margin: 15px;
-    padding-right: 15px;
     display: flex;
 }
 .nav-bar ul{
-    display: flex;
+    list-style: none;
     
 }
-.nav-bar-webOrder button{ 
+.nav-bar-Menu{
+    padding-left: 15px;
+}
+.nav-bar-Menu > li {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+.nav-bar-Menu > li > a{
+    display: block;
+    padding: 5px 10px;
+    color: #fefefe;
+    font-family: 'Baloo Bhai', cursive;
+    text-decoration: none;
+
+}
+.nav-bar-Menu li a:hover{
+    background-color: #BE7E17;
+    transition: .3s;
+}
+/* Submenu */
+
+.nav-bar-subMenu{
+    position: absolute;
+    background-color: #fefefe;
+    width: 130%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s;
+
+}
+.nav-bar-subMenu li a{
+    display: block;
+    padding: 15px;
+    color: #414140;
+    text-decoration: none;
+    font-family: 'Baloo Bhai', cursive;    
+}
+.nav-bar-Menu li:hover .nav-bar-subMenu{
+    visibility: visible;
+    opacity: 1;
+
+
+}
+
+/* Fin de barra de navegacion */
+
+.nav-bar-webOrder button{
+    margin: 15px 15px auto; 
     background-color: sandybrown;
-    width: 100px;
-    height: 70px;
     font-family: 'Baloo Bhai', cursive;
 
 }
@@ -55,9 +111,8 @@ body {
     display: flex;
     box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
     flex-direction: row;
-    cursor: pointer;
-    margin-bottom:  100px;
-    padding-top: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .box {
