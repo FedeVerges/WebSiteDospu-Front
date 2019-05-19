@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 html {
     height: 100vh;
@@ -20,6 +20,7 @@ body {
     background: linear-gradient(#fff,#fefefe,#eaeaea);
 
 }
+
 .wrapper-header{
     background-image: url("https://www.altoastral.com.br/wp-content/uploads/2016/09/familia-feliz-4.jpg");
     background-repeat: no-repeat;
@@ -31,13 +32,28 @@ body {
 }
 header{
     background-color: rgba(0,0,0,0.2);
-    
+    color: #eaeaea;
 }
+
+
 .wrapper-nav-bar{
     display: flex;
     margin: 30px 10px auto;
 
 }
+/* Logo Barra de navegacion */
+
+.nav-bar-logo a{
+    text-decoration: none;
+    color: #eaeaea;
+    margin: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+
+
+
+}
+
 /* Barra de Navegacion */
 
 .nav-bar{
@@ -94,15 +110,21 @@ header{
 
 /* Fin de barra de navegacion */
 
+
+/* Boton Agregar Orden Web */
+
 .nav-bar-webOrder button{
     margin: 15px 15px auto; 
     background-color: sandybrown;
     font-family: 'Baloo Bhai', cursive;
 
 }
-.separator{
 
-    background-color: darkgoldenrod;
+/* Separador */
+.separator{
+    background-image: url("Logo-DOSPU-Negro.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
     height: 100px;
 }
 .wrapper-boxes{
@@ -149,9 +171,8 @@ p{
 }
 
 .box-text{
-    padding-top: 20px;
-    position: relative;
-    bottom: 0;
+    position: relative absolute;
+    margin: 20px;
     opacity: 1;
     padding: 10px;
 
@@ -159,9 +180,12 @@ p{
 .Boton-Personalizado{
     text-decoration: none;
     background-color: transparent;
+    margin: 15px;
+    display: block;
     padding: 10px;
+    text-align: center;
     font-weight: 300;
-    border: 5px solid #eaeaea;
+    border: 3px solid #eaeaea;
     color: #fefefe;
 }
 
@@ -170,6 +194,51 @@ h1 {
     text-align: center;
     margin: 100px auto 20px auto;
 }
+
+
+/* Sponsors */
+
+.wrapper-news{
+    height: 200px;
+    background: rgba(0,0,0,0.10);
+    display: flex;
+    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    flex-direction: row;
+    margin: 30px 30px;
+}
+.news{
+        position: relative;
+        height: 100%;
+        display: block;
+        flex: 1;
+        background-position: left;
+        background-size: cover;
+        transition: .3s;  
+        box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    
+    }
+.l1{
+    background-image: url("https://www.ecestaticos.com/imagestatic/clipping/ebd/e36/ebde364e2484fbcb3788e7868f145582/la-nueva-ley-permitira-a-las-farmacias-de-madrid-abrir-todas-las-horas-que-quieran.jpg?mtime=1516242940");
+
+}
+.l2{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-FxAzCRgWnUxrO0ZriAu898A-LlAaBcPWIdvGFVfTGS2dhoIA");
+}
+
+/* Farmacias */
+.info{
+    margin: 30px;
+}
+
+
+
+
+
+
+
+
+
+
 
 /*  Metodo que funciona cuando la pantalla tiene resolucion max-width'*/
 @media screen and (max-width:800px){
