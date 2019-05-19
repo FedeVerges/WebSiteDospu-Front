@@ -69,7 +69,8 @@ header{
 .nav-bar-Menu > li {
     position: relative;
     display: inline-block;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    margin: 20px;
 }
 .nav-bar-Menu > li > a{
     display: block;
@@ -88,10 +89,12 @@ header{
 .nav-bar-subMenu{
     position: absolute;
     background-color: #fefefe;
-    width: 130%;
+    width: 150%;
     visibility: hidden;
     opacity: 0;
     transition: opacity 1s;
+    margin: 10px;
+    border: 2px solid #414140;
 
 }
 .nav-bar-subMenu li a{
