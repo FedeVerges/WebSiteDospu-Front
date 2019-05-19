@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text|Raleway:600&display=swap');
+
 html {
     height: 100vh;
 
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
@@ -18,7 +20,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(#fff,#fefefe,#eaeaea);
+    background: linear-gradient(#fff, #fefefe, #eaeaea);
 
 }
 
@@ -27,45 +29,71 @@ body {
 h1 {
     font-family: 'Raleway', sans-serif;
 }
+
 h2 {
     font-family: 'Raleway', sans-serif;
 }
-p{
+
+p {
     font-weight: normal;
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+}
+
+li p {
+
+    line-height: 3;
+}
+
+li {
+    list-style: none;
+}
+
+/* fin formato de texto */
+
+
+/* Tabla  */
+
+
+td{
+    background-color:#F3D6A1;
+
 }
 
 
 
-.wrapper-header{
+.wrapper-header {
     background-image: url("https://www.altoastral.com.br/wp-content/uploads/2016/09/familia-feliz-4.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     height: 400px;
 }
-.wrapper-header-aux{
+
+.wrapper-header-aux {
     height: 300px;
     background-color: #F3D6A1;
 
 }
-header{
-    background-color: rgba(0,0,0,0.2);
+
+header {
+    background-color: rgba(0, 0, 0, 0.2);
     color: #eaeaea;
     margin: 30px;
     height: 250px;
 }
 
 
-.wrapper-nav-bar{
+.wrapper-nav-bar {
     display: flex;
     margin: 30px 10px auto;
 
 }
+
 /* Logo Barra de navegacion */
 
-.nav-bar-logo a{
+.nav-bar-logo a {
     text-decoration: none;
     color: #eaeaea;
     margin: 20px;
@@ -75,23 +103,27 @@ header{
 
 /* Barra de Navegacion */
 
-.nav-bar{
+.nav-bar {
     display: flex;
 }
-.nav-bar ul{
+
+.nav-bar ul {
     list-style: none;
-    
+
 }
-.nav-bar-Menu{
+
+.nav-bar-Menu {
     padding-left: 15px;
 }
-.nav-bar-Menu > li {
+
+.nav-bar-Menu>li {
     position: relative;
     display: inline-block;
     padding-bottom: 20px;
     margin: 20px;
 }
-.nav-bar-Menu > li > a{
+
+.nav-bar-Menu>li>a {
     display: block;
     padding: 5px 10px;
     color: #fefefe;
@@ -99,13 +131,15 @@ header{
     text-decoration: none;
 
 }
-.nav-bar-Menu li a:hover{
+
+.nav-bar-Menu li a:hover {
     background-color: #BE7E17;
     transition: .3s;
 }
+
 /* Submenu */
 
-.nav-bar-subMenu{
+.nav-bar-subMenu {
     position: absolute;
     background-color: #fefefe;
     width: 150%;
@@ -116,14 +150,16 @@ header{
     border: 2px solid #414140;
 
 }
-.nav-bar-subMenu li a{
+
+.nav-bar-subMenu li a {
     display: block;
     padding: 15px;
     color: #414140;
     text-decoration: none;
-    font-family: 'Baloo Bhai', cursive;    
+    font-family: 'Baloo Bhai', cursive;
 }
-.nav-bar-Menu li:hover .nav-bar-subMenu{
+
+.nav-bar-Menu li:hover .nav-bar-subMenu {
     visibility: visible;
     opacity: 1;
 
@@ -135,25 +171,26 @@ header{
 
 /* Boton Agregar Orden Web */
 
-.nav-bar-webOrder button{
-    margin: 15px 15px auto; 
+.nav-bar-webOrder button {
+    margin: 15px 15px auto;
     background-color: sandybrown;
     font-family: 'Baloo Bhai', cursive;
 
 }
 
 /* Separador */
-.separator{
+.separator {
     background-image: url("/WebSiteDospu-Front/Front/Imagenes/Logo-DOSPU-Negro.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     height: 100px;
 }
-.wrapper-boxes{
+
+.wrapper-boxes {
     height: 200px;
-    background: rgba(0,0,0,0.10);
+    background: rgba(0, 0, 0, 0.10);
     display: flex;
-    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
     flex-direction: row;
     margin-bottom: 30px;
     margin-top: 10px;
@@ -166,37 +203,40 @@ header{
     flex: 1;
     background-position: left;
     background-size: cover;
-    transition: .3s;  
-    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    transition: .3s;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
 
 }
-.box:hover{
-    flex:1.3;
+
+.box:hover {
+    flex: 1.3;
 }
 
-.a1{
+.a1 {
     background-image: url("http://acn.ucentral.co/images/BANNER-SALUD-FÍSICA-COMPLETO.png");
 
 }
 
-.a2{
+.a2 {
     background-image: url("http://www.unsl.edu.ar/application/assets/img/noticias/dospu2.jpg");
 
 }
-.a3{
-    background-image: url("https://www.aenus.es/wp-content/uploads/2014/09/Fotolia_41231054_Subscription_XXL.jpg");    
+
+.a3 {
+    background-image: url("https://www.aenus.es/wp-content/uploads/2014/09/Fotolia_41231054_Subscription_XXL.jpg");
 }
 
 
 
-.box-text{
+.box-text {
     position: relative absolute;
     margin: 20px;
     opacity: 1;
     padding: 10px;
 
 }
-.Boton-Personalizado{
+
+.Boton-Personalizado {
     text-decoration: none;
     background-color: transparent;
     margin: 15px;
@@ -212,60 +252,65 @@ header{
 
 /* Sponsors */
 
-.wrapper-news{
+.wrapper-news {
     height: 200px;
-    background: rgba(0,0,0,0.10);
+    background: rgba(0, 0, 0, 0.10);
     display: flex;
-    box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
     flex-direction: row;
     margin: 30px 30px;
 }
-.news{
-        position: relative;
-        height: 100%;
-        display: block;
-        flex: 1;
-        background-position: left;
-        background-size: cover;
-        transition: .3s;  
-        box-shadow: 0px 20px 30px rgba(0,0,0,0.47);
-    
-    }
-.l1{
+
+.news {
+    position: relative;
+    height: 100%;
+    display: block;
+    flex: 1;
+    background-position: left;
+    background-size: cover;
+    transition: .3s;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.47);
+
+}
+
+.l1 {
     background-image: url("https://www.ecestaticos.com/imagestatic/clipping/ebd/e36/ebde364e2484fbcb3788e7868f145582/la-nueva-ley-permitira-a-las-farmacias-de-madrid-abrir-todas-las-horas-que-quieran.jpg?mtime=1516242940");
 
 }
-.l2{
+
+.l2 {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-FxAzCRgWnUxrO0ZriAu898A-LlAaBcPWIdvGFVfTGS2dhoIA");
 }
 
 /* Farmacias */
 
-.inferior{
+.inferior {
     display: flex;
 }
 
-.info{
-    margin: 20px;
-    border: 5px solid rgba(0,0,0,0.47);
+.info {
+    margin: 30px;
+    border: 5px solid rgba(0, 0, 0, 0.47);
     max-width: 80%;
 }
 
-.barra-noticias{ 
-    border:  5px solid rgba(0,0,0,0.47);
+.barra-noticias {
+    border: 5px solid rgba(0, 0, 0, 0.47);
 }
 
 
-.noticia1{
+.noticia1 {
     display: flex;
 }
+
 
 /* Fin Farmacias  */
 
 
 
 
-/*  Metodo que funciona cuando la pantalla tiene resolucion max-width'*/
-@media screen and (max-width:800px){
 
-}
+
+
+/*  Metodo que funciona cuando la pantalla tiene resolucion max-width'*/
+@media screen and (max-width:800px) {}
