@@ -142,6 +142,10 @@ header{
 
 }
 
+li{
+    list-style: none;
+}
+
 /* Separador */
 .separator{
     background-image: url("/WebSiteDospu-Front/Front/Imagenes/Logo-DOSPU-Negro.jpeg");
