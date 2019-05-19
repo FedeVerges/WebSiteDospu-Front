@@ -20,13 +20,11 @@ body {
 
 /* Formato de Texto */
 
-h1 {
+h1,h2,h3,h4,h5  {
     font-family: 'Raleway', sans-serif;
 }
 
-h2 {
-    font-family: 'Raleway', sans-serif;
-}
+
 
 p {
     font-weight: normal;
@@ -279,6 +277,8 @@ li{
     position: relative;
     height: 100%;
     display: block;
+    background-color: blanchedalmond;
+    padding: 15px;
     flex: 1;
     background-position: left;
     background-size: cover;
@@ -305,13 +305,20 @@ li{
 .info {
     margin: 30px;
     max-width: 80%;
+    position: relative;
+    height: 100%;
+    display: block;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.47);
 }
 
 .barra-noticias {
     border: 1px solid rgba(0, 0, 0, 0.47);
+    display: none;
 
 }
-
+.input-consulta{
+    height: 150px;
+}
 
 .noticia1 {
     display: flex;
