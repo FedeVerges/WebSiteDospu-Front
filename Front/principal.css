@@ -324,8 +324,18 @@ li{
     display: flex;
 }
 
-
 /* Fin Farmacias  */
+
+.end-file{
+    background-image: url(/WebSiteDospu-Front/Front/Imagenes/Logo-UNSL.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+    position:  relative;
+    margin-left: 33%;
+    height: 150px;
+    width: 500px;
+}
 
 
 
