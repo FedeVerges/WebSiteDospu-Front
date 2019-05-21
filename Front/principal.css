@@ -184,7 +184,7 @@ li{
 
 /* Separador */
 .separator {
-    background-image: url("/WebSiteDospu-Front/Front/Imagenes/Logo-DOSPU-Negro.jpeg");
+    background-image: url("./Imagenes/Logo-DOSPU-Negro.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     height: 100px;
@@ -328,7 +328,7 @@ li{
 /* Fin Farmacias  */
 
 .end-file{
-    background-image: url(/WebSiteDospu-Front/Front/Imagenes/Logo-UNSL.jpeg);
+    background-image: url(./Imagenes/Logo-UNSL.jpeg);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center center;
@@ -337,7 +337,7 @@ li{
     height: 150px;
     width: 500px;
 }
-
+/*/WebSiteDospu-Front/Front/Imagenes/Logo-UNSL.jpeg*/
 
 
 

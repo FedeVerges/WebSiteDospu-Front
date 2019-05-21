@@ -1,16 +1,20 @@
-function Item(nombre, link) {
-    this.nombre = nombre;
-    this.link = link;
+class Item {
+    constructor(nombre, link) {
+        this.nombre = nombre;
+        this.link = link;
+    }
 }
+
 function createElementNavBar(item) {
     const li = document.createElement("li");
     const contenido = document.createTextNode(item.nombre);
     const ref = document.createElement("a");
     ref.appendChild(contenido);
-    ref.setAttribute("href", Item.link)
-    li.appendChild(ref)
+    ref.setAttribute("href", Item.link);
+    li.appendChild(ref);
     return li
 }
+
 function createListNavBar(lista) {
     for (let index = 0; index < lista.length; index++) {
         const contenedor = document.createElement("div");
