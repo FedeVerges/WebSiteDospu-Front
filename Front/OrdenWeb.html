@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="principal.css">
- 
-    <title>Dospu-Organismo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    
+
+    <title> DOSPU </title>
 </head>
 
 <body>
@@ -15,7 +21,6 @@
         <!--  Header of website (social networks and phones) -->
         <header class="header">
             <div class="header-logo facebook">
-
                 <a href="https://www.facebook.com/dospu/about" target="blank">
                     <img src="Imagenes/facebook-square-brands.svg " width="30px" height="30px;">
                 </a>
@@ -100,47 +105,45 @@
         </header>
     </div>
 
-    <div class="Organizacional">
-
-    </div>
-
     <div class="info">
-        <h1>ORGANIZACIONAL</h1>
-        <br>
-        <p>
-            La Obra Social para el Personal Universitario -D.O.S.P.U.-, es el organismos de la Universidad Nacional de
-            San Luis, cuya sede central funciona en Belgrano 1131 de la ciudad Capital de la Provincia de San Luis,
-            República Argentina, que tiene como objetivo fundamental, el de brindar cobertura de asistencia médica y
-            social para la totalidad de los empleados y jubilados de la mencionada Universidad y a sus familiares,
-            creada el 10 de septiembre de 1974. <br>
-            D.O.S.P.U. en un organismo desconcentrado y descentralizado de la Universidad, con estructura y
-            funcionalidad propia, con plena autonomía financiera y gobierno compartido, ejercido por Directorio
-            compuesto de: un Presidente designado por el Rector de la Universidad con acuerdo del Consejo Superior y
-            ocho Directores Titulares que cumplen sus funciones Ad-honorem en representación de los afiliados, elegidos
-            por los estamentos Docente, No Docentes y Jubilados. <br>
-            Los servicios de cobertura de salud se ofrecen en consultorios propios y prestadores externos, permitiendo
-            siempre "la libre elección profesional" en: consultas a profesionales del arte de curar, exámenes
-            complementarios, prácticas médicas de alta complejidad, psicoterapia, fonoaudiología, oncología, nutrición,
-            planes especiales para diversas enfermedades y discapacidades, plan materno infantil, ortopedia, prótesis,
-            exámenes bioquímicos, odontología, traslados, vacunatorio, enfermería, kinesiología y fisiatría,
-            psiquiatría, óptica, ortodoncia, prácticas de diagnóstico, trasplantes de órganos, etc. <br>
-            Entre los servicios de cobertura social, se destacan: ayuda financiera (anticipo de haberes) por salud y
-            razón social, servicios de guardia, subsidio por fallecimiento, uso de panteón, préstamo de aparatos
-            ortopédicos, etc. <br>
-            El área geográfica para la cobertura de salud de los afiliados de D.O.S.P.U., se extiende a todos los
-            lugares del país donde haya Universidad Nacional que tenga Obra Social, merced al convenio de reciprocidad
-            de servicios que existe entre todas las Obras Sociales que integran el Consejo de Obras Sociales
-            Universitarias -C.O.S.U.N.- <br>
-            En la actualidad, esta red, está integrada por veintidós Obras Sociales que brindan cobertura en quince
-            provincias de nuestro país. <br>
-            Actualmente, la cantidad de afiliados de D.O.S.P.U., es de 6.000 personas, distribuídas en todo el ámbito de
-            la provincia de San Luis, estando su mayor concentración en la ciudad de San Luis Capital y en la ciudad de
-            Villa Mercedes, siendo 2.200 los afiliados aportantes y el resto, 3.800, familiares. <br>
-            Además, D.O.S.P.U. colabora en la atención de la salud a los alumnos universitarios que cursan sus estudios
-            en la Universidad Nacional de San Luis. <br>
-        </p>
+        <h2>ORDEN WEB</h2>
+        <form action="POST">
+            <!-- DNI -->
+            <div class="form-group-row">
+                <div class="form-group col-sm-3">
+                    <label for="i-dni">Ingresa el DNI del Beneficiario</label>
+                    <input type="text" id="i-dni" class="form-control" aria-placeholder="ingresa tu dni">
+                </div>
+            </div>
+            <!-- Buscar -->
+            <div class="form-grupo form-check">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+
+            <!-- Datos del beneficiario -->
+            <!-- Nombre -->
+            <div class="d-none form-group col-md-5">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="#"> Nombre </label>
+                    <div class="col-sm-10">
+                        <input class="form-control-plaintext" id="nombre-afiliado" value="Nombre del afiliado"
+                            type="text" name="">
+                    </div>
+                </div>
+                <!-- Apellido -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="#"> Apellido </label>
+                    <div class="col-sm-10">
+                        <input class="form-control-plaintext" type="text" value="Apellido del afiliado" name="">
+                    </div>
+                </div>
+            </div>
+            <!-- fin Datos del beneficiario -->
+        </form>
     </div>
+
 
 </body>
+
 
 </html>
