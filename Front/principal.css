@@ -345,3 +345,129 @@ li{
 
 /*  Metodo que funciona cuando la pantalla tiene resolucion max-width'*/
 @media screen and (max-width:800px) {}
+
+/* ORDEN WEB */
+
+/* barra de pasos de la orden web */
+.progressbar{
+    display: flex;
+    margin-bottom: 15px;
+    counter-reset: step;
+}
+
+.progressbar_option{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.progressbar_option:before{
+    display: flex;
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    height: 20px;
+    background-color: #F3D6A1;
+    margin: 0 auto 5px;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.progressbar_option:after{
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background-color: #F3D6A1;
+    top: 10px;
+    left: -50%;
+    z-index: 1;
+}
+
+.progressbar_option:first-child:after{
+    content: none;
+
+}
+
+.progressbar_option.active:after,
+.progressbar_option.active:before{
+    background-color: #BE7E17;
+}
+
+
+/* titulos */
+H3.form-orden_titulo {text-align: center}
+
+.step-titulo{
+    height: 30px;
+    width: 1060px;
+    background-color: #F3D6A1;
+}
+
+H4.paso {text-align: center}
+
+/*alineacion centrada*/
+.step-body{
+    text-align:center;
+}
+
+.step-button{
+    text-align:center;
+}
+
+/*botones e input*/
+.boton{
+    background-color: #F3D6A1;
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.input{
+    display: blok;
+    padding: 10px 80px;
+}
+
+/* para cambiar de pasos*/
+
+.orden_body{
+    display: flex;
+}
+
+.root{
+    overflow: hidden;
+}
+
+.step{
+    opacity: 0;
+}
+
+.step.active{
+    opacity: 1;
+}
+
+.step.to-left{
+    margin-left: -100%;
+}
+
+.step.inactive{
+    animation-name: scale;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+
+@keyframes scale{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.1);
+    }
+}
