@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="principal.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> 
     </script>
     
 
@@ -138,11 +138,16 @@
                             <button class="boton" type="submit">Buscar</button>
                         </div>
                         <!-- Datos del beneficiario -->
-                        <div class="d-none form-group col-md-5">
+                        <div class="">
                             <div class="step-info-beneficiario">
+                                <br>
                                 <label for="id-nombre">Nombre:</label>
+                                <br>
                                 <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text" name="">
+                                <br>
+                                <br>
                                 <label for="id-apellido">Apellido:</label>
+                                <br>
                                 <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text" name="">
                             </div>
                             <!-- Siguiente paso -->
@@ -155,7 +160,7 @@
                     <!-- Paso 2-->
                     <div class="step" id="step_2">
                         <!-- Tipo de orden y prestador-->
-                        <div class="form-group col-sm-5">
+                        <div class="form-orden_body">
                             <br>
                             <div class="step-titulo">
                                 <h4 class="paso">PASO 2: Elegir Orden y Prestador</h4>
@@ -180,7 +185,7 @@
                     <!-- Paso 3-->
                     <div class="step" id="step_3">
                         <!-- Info total-->
-                        <div class="form-group col-sm-5">
+                        <div class="form-orden_body">
                             <br>
                             <div class="step-titulo">
                                 <h4 class="paso">PASO 3: Confirmar Datos</h4>
