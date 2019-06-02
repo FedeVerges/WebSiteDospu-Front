@@ -34,12 +34,13 @@ let form= document.querySelector('.form-orden');
 let progressOption= document.querySelectorAll('.progressbar_option')
 
 form.addEventListener('click',function(e){
-    let element= e.target;
-    let isButtonNext= element.contList.contains('step_button-next');
-    let isButtonBack= element.contList.contains('step_button-back');
+    let element = e.target;
+    console.log(element);
+    let isButtonNext= element.classList.contains('step_button-next');
+    let isButtonBack= element.classList.contains('step_button-back');
     if(isButtonNext || isButtonBack){
-        let currentStep= document.getElementById('step-'+ element.dataset.step);
-        let jumptStep= document.getElementById('step-'+ element.dataset.to_step);
+        let currentStep= document.getElementById('step_'+ element.dataset.step);
+        let jumptStep= document.getElementById('step_'+ element.dataset.to_step);
         currentStep.addEventListener('animationend',function callback(){
             currentStep.classList.remove('active');
             jumptStep.classList.add('active');
@@ -56,7 +57,7 @@ form.addEventListener('click',function(e){
         currentStep.classList.add('inactive');
         jumptStep.classList.remove('inactive');
     }
-
+ 
 })
 
 
