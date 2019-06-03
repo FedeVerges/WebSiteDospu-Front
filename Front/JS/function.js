@@ -53,7 +53,7 @@ form.addEventListener('click',function(e){
                 progressOption[element.dataset.step -1].classList.remove('active');
             }
             currentStep.removeEventListener('animationend',callback);
-        })
+        });
         currentStep.classList.add('inactive');
         jumptStep.classList.remove('inactive');
     }
