@@ -1,3 +1,7 @@
+const arregloOrdenes 
+
+
+
 /* This method send the dni number to the DOSPU's API and then 
 it give me a confirmation and the name and surname of the  beneficiaries */
 function getBeneficiary() {
@@ -7,8 +11,6 @@ function getBeneficiary() {
 
         const datos = new FormData(myForm);
         const dni = datos.get('dni-beneficiario');
-
-        console.log(dni);
     });
 
 
@@ -16,7 +18,7 @@ function getBeneficiary() {
 }
 getBeneficiary();
 
-
+/* 
 function getTypeOfOrder() {
     const api_url = "https://api.wheretheiss.at/v1/satellites";
     async function getData() {
@@ -35,4 +37,6 @@ function getTypeOfOrder() {
     getData();
 }
 
-getTypeOfOrder();
+getTypeOfOrder(); */
+
+
