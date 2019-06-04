@@ -100,34 +100,37 @@
         </header>
     </div>
     <div class="info">
-        <h1>CONSULTAS Y/O SUGERENCIAS</h1>
-        <br>
-        <h3>AVISO</h3>
-        <br>
-        <p>DOSPU responderá sólo consultas concernientes a la Obra Social.
-            Sobre enfermedades y diagnósticos, debe consultar a su médico y/o a establecimientos de salud adecuados.
-        </p>
-        <br>
-        <ul>
-            <li>
-                <h4>Nombre:</h4>
-            </li>
-            <input type="text" name="nombre">
-            <li>
-                <h4>Apellido:</h4>
-            </li>
-            <input type="text" name="apellido">
-            <li>
-                <h4>E-mail:</h4>
-            </li>
-            <input type="text" name="email">
-            <li>
-                <h4>Consulta:</h4>
-            </li>
-            <input type="text" name="consulta" class="input-consulta">
-        </ul>
-        <br>
-        <button type="submit">Aceptar</button>
+        <div class="step-body">
+
+            <h1>CONSULTAS Y/O SUGERENCIAS</h1>
+            <br>
+            <h3>AVISO</h3>
+            <br>
+            <p>DOSPU responderá sólo consultas concernientes a la Obra Social.
+                Sobre enfermedades y diagnósticos, debe consultar a su médico y/o a establecimientos de salud adecuados.
+            </p>
+            <br>
+            <ul>
+                <li>
+                    <h4>Nombre:</h4>
+                </li>
+                <input class="input" type="text" name="nombre" required>
+                <li>
+                    <h4>Apellido:</h4>
+                </li>
+                <input class="input" type="text" name="apellido" required>
+                <li>
+                    <h4>E-mail:</h4>
+                </li>
+                <input class="input" type="text" name="email" required>
+                <li>
+                    <h4>Consulta:</h4>
+                </li>
+                <input style="padding: 50px 100px" type="text" name="consulta" class="input-consulta" required>
+            </ul>
+            <br>
+            <button class="boton"type="submit">Aceptar</button>
+        </div>
     </div>
 
 </body>
