@@ -6,11 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="principal.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"> 
-    </script>
-    
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
     <title> DOSPU </title>
 
@@ -98,7 +95,8 @@
 
                 <!-- Button to take a web order -->
                 <div class="nav-bar-webOrder">
-                    <button id="button-cargar-orden"> <a  style="text-decoration: none" href="./OrdenWeb.html"> Cargar Orden Web </a></button>
+                    <button id="button-cargar-orden"> <a style="text-decoration: none" href="./OrdenWeb.html"> Cargar
+                            Orden Web </a></button>
                 </div>
 
             </nav>
@@ -127,12 +125,12 @@
                         </div>
                         <br>
                         <div class="form-group col-md-5 mx-auto">
-                        <div class="step-body">
-                            <label for="i-dni">Beneficiario DNI</label>
-                            <br>
-                            <input type="text" id="i-dni" class="input" aria-placeholder="ingresa tu dni">
+                            <div class="step-body">
+                                <label for="i-dni">Beneficiario DNI</label>
+                                <br>
+                                <input type="text" id="i-dni" class="input" aria-placeholder="ingresa tu dni">
+                            </div>
                         </div>
-                    </div>
                         <!-- Buscar -->
                         <div class="step-button">
                             <br>
@@ -142,15 +140,18 @@
                         <div class="">
                             <div class="step-info-beneficiario">
                                 <br>
-                                <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text" name="">
+                                <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text"
+                                    name="">
                                 <br>
-                                <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text" name="">
+                                <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text"
+                                    name="">
                             </div>
                             <!-- Siguiente paso -->
                             <div class="step-button">
                                 <br>
-                                <button class="boton step_button-next" type="button" data-to_step="2" data-step="1">Siguiente</button>
-                            </div> 
+                                <button class="boton step_button-next" type="button" data-to_step="2"
+                                    data-step="1">Siguiente</button>
+                            </div>
                         </div>
                     </div>
                     <!-- Paso 2-->
@@ -164,11 +165,17 @@
                         <div class="step-body">
                             <label for="i-tipo-orden">Tipo de Orden</label>
                             <br>
-                            <input class="input" id="tipo-orden" value="Tipo de orden" type="text" name="">
+                            <!--                             <input class="input" id="tipo-orden" value="Tipo de orden" type="text" name="">
+ -->
+                            <select class="custom-select" name="" id="tipo-orden">
+                                <option selected> Choose... </option>
+                            </select>
                             <br>
                             <label for="i-prestador">Prestador</label>
                             <br>
-                            <input class="input" id="prestador" value="Prestador" type="text" name="">
+                            <select class="custom-select" name="" id="prestador">
+                                <option selected> Choose... </option>
+                            </select>
                             <br>
                             <label for="i-valor"> Valor </label>
                             <br>
@@ -193,8 +200,7 @@
                         </div>
                         <br>
                         <div class="step-body">
-                            <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text"
-                                name="">
+                            <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text" name="">
                             <br>
                             <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text"
                                 name="">
@@ -224,6 +230,7 @@
         </div>
     </div>
     <script src="./JS/function.js"></script>
+    <script src="./JS/form.js"></script>
 
 </body>
 
