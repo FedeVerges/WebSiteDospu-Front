@@ -1,6 +1,6 @@
 class WebOrder {
     constructor(number, date, AuthCode, BarsCode, orderType, lender, partner) {
-            this.orderNumber = number,
+        this.orderNumber = number,
             this.date = date,
             this.authCode = AuthCode,
             this.BarsCode = BarsCode,
@@ -100,7 +100,7 @@ function pushOrder() {
     const afiliado = new Partner("-", "-", "-", "-", "-", "-");
     const tipoOrden = new OrderType("-", "-", 0);
     const lender = new Lender("-", "-", "-");
-    const webORder = new WebOrder(0,"5/5/2019","123512asdasd",1231231232,'-','-','-');
+    const webORder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
 
     next_button.addEventListener('click', function (e) {
         afiliado.name = document.getElementById("nombre-afiliado").value;
@@ -109,51 +109,45 @@ function pushOrder() {
         lender.name = document.getElementById("prestador").value;
         tipoOrden.type = document.getElementById("tipo-orden").value;
         tipoOrden.orderCost = document.getElementById("valor").value;
+
         webORder.orderType = tipoOrden.type;
         webORder.lender = lender;
         webORder.partner = afiliado;
 
-        var http = new XMLHttpRequest();
-        var url = "http://localhost:9000/api/weborders";
-        http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        http.open("POST", url, true);
+        fetch("http://localhost:9000/api/weborder", {
+                method: 'post',
+                mode: "cors",
+                body: JSON.stringify({
 
-        http.onreadystatechange = function () {
-            if (http.readyState == 4 && http.status == 200) {
-                //aqui obtienes la respuesta de tu peticion
-                alert(http.responseText);
-            }
-        }
-        http.send(JSON.stringify({
-            Partner: {
-                Name: afiliado.name,
-                Surname: afiliado.surname,
-                Dni: afiliado.dni,
-                Birthdate: afiliado.birthdate,      
-                Type: afiliado.type,
-                Id: afiliado.id
-            },  
-            Lender:{
-                Name: lender.name,
-                Surname: lender.surname,
-                Cuil: lender.cuil
-            },
-            OrderType:{
-                orderTypeId: tipoOrden.orderTypeID,
-                Type: tipoOrden.type,
-                orderCost : tipoOrden.orderCost
-            },
-            WebOrder:{
-                OrderNumber: webORder.orderNumber,
-                Date: webORder.date,
-                AuthCode: webORder.authCode,
-                BarsCode: webORder.BarsCode,
-                Lender: webORder.lender,
-                Partner: webORder.partner,
-                OrderType: webORder.orderType                
-            }
+                    OrderNumber: webORder.orderNumber,
+                    Date: webORder.date,
+                    AuthCode: webORder.authCode,
+                    BarsCode: webORder.BarsCode,
+                    Lender: {
+                        Name: lender.name,
+                        Surname: lender.surname,
+                        Cuil: lender.cuil
+                    },
+                    Partner: {
+                        Name: afiliado.name,
+                        Surname: afiliado.surname,
+                        Dni: afiliado.dni,
+                        Birthdate: afiliado.birthdate,
+                        Type: afiliado.type,
+                        Id: afiliado.id
+                    },
+                    OrderType: {
+                        orderTypeId: tipoOrden.orderTypeID,
+                        Type: tipoOrden.type,
+                        orderCost: tipoOrden.orderCost
+                    }
 
-        }));
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     })
 }
 
