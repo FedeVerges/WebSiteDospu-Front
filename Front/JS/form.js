@@ -100,9 +100,9 @@ function pushOrder() {
     const afiliado = new Partner("-", "-", "-", "-", "-", "-");
     const tipoOrden = new OrderType("-", "-", 0);
     const lender = new Lender("-", "-", "-");
-    const webORder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
+    const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
 
-    next_button.addEventListener('click', function (e) {
+    next_button.addEventListener('click', () => {
         afiliado.name = document.getElementById("nombre-afiliado").value;
         afiliado.surname = document.getElementById("apellido-afiliado").value;
         afiliado.dni = document.getElementById("DNI-afiliado").value;
@@ -110,19 +110,19 @@ function pushOrder() {
         tipoOrden.type = document.getElementById("tipo-orden").value;
         tipoOrden.orderCost = document.getElementById("valor").value;
 
-        webORder.orderType = tipoOrden.type;
-        webORder.lender = lender;
-        webORder.partner = afiliado;
+        webOrder.orderType = tipoOrden.type;
+        webOrder.lender = lender;
+        webOrder.partner = afiliado;
 
         fetch("http://localhost:9000/api/weborder", {
                 method: 'post',
                 mode: "cors",
                 body: JSON.stringify({
 
-                    OrderNumber: webORder.orderNumber,
-                    Date: webORder.date,
-                    AuthCode: webORder.authCode,
-                    BarsCode: webORder.BarsCode,
+                    OrderNumber: webOrder.orderNumber,
+                    Date: webOrder.date,
+                    AuthCode: webOrder.authCode,
+                    BarsCode: webOrder.BarsCode,
                     Lender: {
                         Name: lender.name,
                         Surname: lender.surname,
@@ -144,10 +144,7 @@ function pushOrder() {
 
                 })
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
+            .then(handleWebOrderResponse)
     })
 }
 
@@ -169,23 +166,15 @@ function getBeneficiary() {
 }
 // getBeneficiary();
 
-/* 
-function getTypeOfOrder() {
-    const api_url = "https://api.wheretheiss.at/v1/satellites";
-    async function getData() {
-        const request = await fetch(api_url)
-        const data = await request.json();
-        console.log(data);
-        const {
-            name,
-            id
-        } = data;
-
-        console.log(name);
-        console.log(id);
-
+function handleWebOrderResponse(response) {
+    // TODO: Añadir la lógica de manejo de respuesta
+    const statusCode = response.status
+    if (statusCode === 200) {
+        // La webOrder fue procesada correctamente en el servidor. Todo Ok!
+        console.log("Ok response");
+    } else {
+        // Existio un error en el procesamiento de la webOrder
+        // Ver en la API (.../api) que significa cada código de error (mal formato, error de servidor, etc)
+        console.log("Response code: ", response);
     }
-    getData();
 }
-
-getTypeOfOrder(); */
