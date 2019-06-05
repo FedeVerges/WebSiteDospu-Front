@@ -178,6 +178,7 @@ function handleWebOrderResponse(response) {
     } else {
         // Existio un error en el procesamiento de la webOrder
         // Ver en la API (.../api) que significa cada código de error (mal formato, error de servidor, etc)
-        console.log("Response code: ", response);
+        response.json()
+            .then(errorMap => console.log(errorMap))
     }
 }
