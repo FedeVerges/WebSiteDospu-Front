@@ -102,7 +102,7 @@ function pushOrder() {
     const lender = new Lender("-", "-", "-");
     const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
 
-    next_button.addEventListener('click', () => {
+    next_button.onclick = () => {
         afiliado.name = document.getElementById("nombre-afiliado").value;
         afiliado.surname = document.getElementById("apellido-afiliado").value;
         afiliado.dni = document.getElementById("DNI-afiliado").value;
@@ -145,7 +145,7 @@ function pushOrder() {
                 })
             })
             .then(handleWebOrderResponse)
-    })
+    }
 }
 
 
