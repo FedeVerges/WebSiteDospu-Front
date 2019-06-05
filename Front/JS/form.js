@@ -117,6 +117,9 @@ function pushOrder() {
         fetch("http://localhost:9000/api/weborder", {
                 method: 'post',
                 mode: "cors",
+                headers: new Headers({
+                    'content-type': 'application/json'
+                }),
                 body: JSON.stringify({
 
                     OrderNumber: webOrder.orderNumber,
