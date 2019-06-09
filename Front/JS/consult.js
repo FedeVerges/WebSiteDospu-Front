@@ -9,12 +9,12 @@ class Suggestion {
     }
 }
 
+sendSuggestion()
 
 function sendSuggestion() {
     const sendButton = document.getElementById('suggestion-send-button')
 
     sendButton.onclick = () => {
-
         const name = document.getElementById('suggestion-name').value
         const surname = document.getElementById('suggestion-surname').value
         const email = document.getElementById('suggestion-email').value
@@ -38,8 +38,33 @@ function sendSuggestion() {
 
             })
 
-        })
+        }).then(handleSuggestionResponse)
     }
 
 
+}
+
+
+function handleSuggestionResponse(response) {
+    const statusCode = response.status
+    if (statusCode === 200) {
+        // The order has been processed correctly
+        console.log("Ok response");
+        alert("The suggestion has been processed correctly");
+    } else {
+        // Diferent types of errors.        
+        switch (statusCode) {
+            case 400:
+                alert("Suggestion error, please check values")
+                break;
+            case 500:
+                alert("Database error, please call technical support")
+                break;
+            default:
+                alert("Default Error")
+                break;
+        }
+        response.json()
+            .then(errorMap => console.log(errorMap))
+    }
 }

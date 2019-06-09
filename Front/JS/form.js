@@ -178,16 +178,24 @@ function getBeneficiary() {
 // getBeneficiary();
 
 function handleWebOrderResponse(response) {
-    // TODO: Añadir la lógica de manejo de respuesta
     const statusCode = response.status
     if (statusCode === 200) {
-        // La webOrder fue procesada correctamente en el servidor. Todo Ok!
+        // The order has been processed correctly
         console.log("Ok response");
-        alert("Tu orden ha sido cargada exitosamente");
+        alert("The order has been processed correctly");
     } else {
-        // Existio un error en el procesamiento de la webOrder
-        // Ver en la API (.../api) que significa cada código de error (mal formato, error de servidor, etc)
-        
+        // Diferent types of errors.        
+        switch (statusCode) {
+            case 400:
+                alert("WebForm error, please check values")
+                break;
+            case 500:
+                alert("Database error, please call technical support")
+                break;
+            default:
+                alert("Default Error")
+                break;
+        }
         response.json()
             .then(errorMap => console.log(errorMap))
     }
