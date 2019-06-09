@@ -42,17 +42,22 @@ const p2 = new Partner("Alfredo","Verges","41221777","10/5/2019","Titular","2231
 
 
 /* Lenders  */
-const l1 = new lender("Facundo", "Decena","20121231238")
-const l2 = new lender("Facundo", "Pereira","20121231233")
+const l1 = new Lender("Facundo", "Decena","20121231238")
+const l2 = new Lender("Facundo", "Pereira","20121231233")
 
 /* OrderType */
 
-const ot1 = new orderType ("50c","tipo1",50)
-const ot2 = new orderType ("50d","tipo2",150)
+const ot1 = new OrderType ("50c","tipo1",50)
+const ot2 = new OrderType ("50d","tipo2",150)
 
 
 const arregloOrdenes = []
 const arregloPrestadores= []
+const arregloAfiliados= []
+
+arregloAfiliados.push(p1);
+arregloAfiliados.push(p2);
+
 arregloOrdenes.push(ot1);
 arregloOrdenes.push(ot2);
 
@@ -60,7 +65,10 @@ arregloPrestadores.push(l1);
 arregloPrestadores.push(l2);
 
 TakeOrder(arregloOrdenes);
-
+showPerson(arregloAfiliados);
+putLenders(arregloPrestadores);
+showOrderCost(arregloOrdenes);
+showInformation();
 
 function TakeOrder (arregloOrdenes){
     const selector = document.getElementById("tipo-orden");
@@ -79,10 +87,10 @@ function putLenders (arregloPrestadores){
     const selector = document.getElementById("prestador");
     console.log(selector);
 
-    for (let index = 0; index < arregloOrdenes.length; index++) {
+    for (let index = 0; index < arregloPrestadores.length; index++) {
         const orderElement = document.createElement("option");
-        orderElement.setAttribute("value",arregloOrdenes[index].name);
-        const texto = document.createTextNode(arregloOrdenes[index].name);
+        orderElement.setAttribute("value",arregloPrestadores[index].name);
+        const texto = document.createTextNode(arregloPrestadores[index].name);
         orderElement.appendChild(texto);
         selector.appendChild(orderElement);
     }
@@ -128,3 +136,59 @@ function getTypeOfOrder() {
 }
 
 getTypeOfOrder(); */
+
+/*Formulario */
+
+function showOrderCost(arrayOrder){
+    const select= document.getElementById("tipo-orden");
+    select.addEventListener('change',
+    function(){
+        const selectedOption = this.options[select.selectedIndex];
+        for (let i = 0; i < arrayOrder.length; i++) {
+            if (arrayOrder[i].type == selectedOption.text) {
+                document.getElementById("valor").value= arrayOrder[i].orderCost;
+            }
+        } 
+    });
+}
+
+function showPerson(array){
+    const buttonSearch = document.getElementById("button-search");
+    buttonSearch.addEventListener('click', function(e){
+        const result= givePerson(array);
+        if (result != null) {
+            document.getElementById("nombre-afiliado").value=result.name;
+            document.getElementById("apellido-afiliado").value=result.surname;
+            document.getElementById("button-Next1").disabled=false;
+        }
+        else{
+            alert("El DNI ingresado no se cuentra en la Base de Datos");
+        }
+    });
+}
+
+function showInformation(){
+    const buttonNext = document.getElementById("button-Next2");
+    buttonNext.addEventListener("click",function(e){
+        document.getElementById("nombre-afiliado-show").value = document.getElementById("nombre-afiliado").value;
+        document.getElementById("apellido-afiliado-show").value = document.getElementById("apellido-afiliado").value;
+        document.getElementById("DNI-afiliado-show").value = document.getElementById("i-dni").value;
+        
+        document.getElementById("tipo-orden-show").value = document.getElementById("tipo-orden").value;
+        document.getElementById("prestador-show").value = document.getElementById("prestador").value;
+        
+        document.getElementById("valor-show").value= document.getElementById("valor").value;
+    });
+}
+
+function givePerson(arrayPartner){
+    const DNI = document.getElementById("i-dni").value;
+    for (let i = 0; i < arrayPartner.length; i++) {
+        if (arrayPartner[i].dni == DNI) {
+            return arrayPartner[i];
+        }
+        else{
+            return null;
+        }
+    }
+}

@@ -128,29 +128,29 @@
                             <div class="step-body">
                                 <label for="i-dni">Beneficiario DNI</label>
                                 <br>
-                                <input type="text" id="i-dni" class="input" aria-placeholder="ingresa tu dni" minlength="7" maxlength="8" required>
+                                <input type="text" id="i-dni" class="input" aria-placeholder="ingresa tu dni" min="7" max="8" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" requied>
                             </div>
                         </div>
                         <!-- Buscar -->
                         <div class="step-button">
                             <br>
-                            <button class="boton" type="submit">Buscar</button>
+                            <button class="boton" type="button" id="button-search">Buscar</button>
                         </div>
                         <!-- Datos del beneficiario -->
                         <div class="">
                             <div class="step-info-beneficiario">
                                 <br>
                                 <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text"
-                                    name="">
+                                    name="" readonly>
                                 <br>
                                 <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text"
-                                    name="">
+                                    name="" readonly>
                             </div>
                             <!-- Siguiente paso -->
                             <div class="step-button">
                                 <br>
                                 <button class="boton step_button-next" type="button" data-to_step="2"
-                                    data-step="1">Siguiente</button>
+                                    data-step="1" id="button-Next1" disabled="true">Siguiente</button>
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                             <br>
                             <!--                             <input class="input" id="tipo-orden" value="Tipo de orden" type="text" name="">
  -->
-                            <select style="width:500px" class="custom-select" name="" id="tipo-orden">
+                            <select style="width:500px" class="custom-select" name="tipo-orden" id="tipo-orden">
                                 <option selected> Choose... </option>
                             </select>
                             <br>
@@ -187,7 +187,7 @@
                         <div class="step-button">
                             <button class="boton step_button-back" type="button" data-to_step="1"
                                 data-step="2">Volver</button>
-                            <button class="boton step_button-next" type="button" data-to_step="3"
+                            <button class="boton step_button-next" id ="button-Next2" type="button" data-to_step="3"
                                 data-step="2">Siguiente</button>
                         </div>
                     </div>
@@ -200,18 +200,18 @@
                         </div>
                         <br>
                         <div class="step-body">
-                            <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text" name="">
+                            <input class="input" id="nombre-afiliado-show" value="Nombre del afiliado" type="text" name="" readonly>
                             <br>
-                            <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text"
-                                name="">
+                            <input class="input" id="apellido-afiliado-show" value="Apellido del afiliado" type="text"
+                                name="" readonly>
                             <br>
-                            <input class="input" id="DNI-afiliado" value="DNI del afiliado" type="text" name="">
+                            <input class="input" id="DNI-afiliado-show" value="DNI del afiliado" type="text" name="" readonly>
                             <br>
-                            <input class="input" id="tipo-orden" value="Tipo de orden" type="text" name="">
+                            <input class="input" id="tipo-orden-show" value="Tipo de orden" type="text" name="" readonly>
                             <br>
-                            <input class="input" id="prestador" value="Prestador" type="text" name="">
+                            <input class="input" id="prestador-show" value="Prestador" type="text" name="" readonly>
                             <br>
-                            <input class="input" id="valor" value="Valor de la orden" type="text" name="">
+                            <input class="input" id="valor-show" value="Valor de la orden" type="text" name="" readonly>
                             <br>
                             <p class="step-texto">
                             </p>
