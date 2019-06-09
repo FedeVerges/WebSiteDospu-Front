@@ -185,7 +185,7 @@ function handleWebOrderResponse(response) {
         alert("The order has been processed correctly");
     } else {
         // Diferent types of errors.        
-        switch (statuscode) {
+        switch (statusCode) {
             case 400:
                 alert("WebForm error, please check values")
                 break;
