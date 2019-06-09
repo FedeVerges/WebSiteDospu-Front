@@ -110,12 +110,12 @@ function pushOrder() {
     const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
 
     next_button.onclick = () => {
-        afiliado.name = document.getElementById("nombre-afiliado").value;
-        afiliado.surname = document.getElementById("apellido-afiliado").value;
-        afiliado.dni = document.getElementById("DNI-afiliado").value;
-        lender.name = document.getElementById("prestador").value;
-        tipoOrden.type = document.getElementById("tipo-orden").value;
-        tipoOrden.orderCost = document.getElementById("valor").value;
+        afiliado.name = document.getElementById("nombre-afiliado-show").value;
+        afiliado.surname = document.getElementById("apellido-afiliado-show").value;
+        afiliado.dni = document.getElementById("DNI-afiliado-show").value;
+        lender.name = document.getElementById("prestador-show").value;
+        tipoOrden.type = document.getElementById("tipo-orden-show").value;
+        tipoOrden.orderCost = document.getElementById("valor-show").value;
 
         webOrder.orderType = tipoOrden.type;
         webOrder.lender = lender;
