@@ -263,6 +263,19 @@ li {
     color: #fefefe;
 }
 
+.boton-orden{
+    text-decoration: none;
+    background-color: rgb(230, 154, 32);
+    display: flex;
+    padding: 10px 10px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #ffffff;
+    color: #fefefe;
+    border-radius: 3px;
+    height: 60px;
+    width: 120px;
+}
 
 
 /* Sponsors */
