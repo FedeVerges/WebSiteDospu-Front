@@ -50,7 +50,6 @@ const l2 = new Lender("Facundo", "Pereira", "20121231233")
 const ot1 = new OrderType("50c", "tipo1", 50)
 const ot2 = new OrderType("50d", "tipo2", 150)
 
-
 const arregloOrdenes = []
 const arregloPrestadores = []
 arregloOrdenes.push(ot1);
@@ -116,7 +115,7 @@ function pushOrder() {
 
         fetch("http://localhost:9000/api/weborder", {
                 method: 'post',
-                mode: "cors",
+                mode: "no-cors",
                 headers: new Headers({
                     'content-type': 'application/json'
                 }),
@@ -146,6 +145,7 @@ function pushOrder() {
                     }
 
                 })
+
             })
             .then(handleWebOrderResponse)
     }
@@ -175,9 +175,11 @@ function handleWebOrderResponse(response) {
     if (statusCode === 200) {
         // La webOrder fue procesada correctamente en el servidor. Todo Ok!
         console.log("Ok response");
+        alert("Tu orden ha sido cargada exitosamente");
     } else {
         // Existio un error en el procesamiento de la webOrder
         // Ver en la API (.../api) que significa cada código de error (mal formato, error de servidor, etc)
+        
         response.json()
             .then(errorMap => console.log(errorMap))
     }

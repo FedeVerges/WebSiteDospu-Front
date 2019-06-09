@@ -20,6 +20,7 @@ body {
     margin: 0;
     /* min-height: 100%; */
     background: linear-gradient(#fff, #fefefe, #eaeaea);
+    
 }
 
 /* Formato de Texto */
@@ -75,10 +76,15 @@ td {
     height: 400px;
 
 }
+.wrapper-header-aux {
+    height: 300px;
+    background-color: #F3D6A1;
+
+}
 
 
 header {
-    background-color: #a07f43;
+    background-color: rgba(0, 0, 0, 0.4);
     color: #eaeaea;
     height: 200px;
 }
