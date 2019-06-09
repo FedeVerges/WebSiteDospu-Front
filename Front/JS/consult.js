@@ -9,11 +9,13 @@ class Suggestion {
     }
 }
 
+sendSuggestion()
 
 function sendSuggestion() {
     const sendButton = document.getElementById('suggestion-send-button')
 
     sendButton.onclick = () => {
+        console.log('gato')
 
         const name = document.getElementById('suggestion-name').value
         const surname = document.getElementById('suggestion-surname').value
