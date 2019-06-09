@@ -1,26 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text|Raleway:600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+html {
+    min-height: 100%;
 }
 
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+    /* min-height: 100%; */
     background: linear-gradient(#fff, #fefefe, #eaeaea);
-
 }
 
 /* Formato de Texto */
 
-h1,h2,h3,h4,h5  {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: 'Raleway', sans-serif;
 }
 
@@ -29,13 +37,12 @@ h1,h2,h3,h4,h5  {
 p {
     font-weight: normal;
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
     line-height: 1.5;
 }
-a{
+
+a {
     font-weight: normal;
     font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
     line-height: 1.5;
     text-decoration: none;
 }
@@ -55,12 +62,10 @@ li {
 /* Tabla  */
 
 
-td{
-    background-color:#F3D6A1;
+td {
+    background-color: #F3D6A1;
 
 }
-
-
 
 .wrapper-header {
     background-image: url("https://www.altoastral.com.br/wp-content/uploads/2016/09/familia-feliz-4.jpg");
@@ -68,26 +73,20 @@ td{
     background-position: center;
     background-size: 100%;
     height: 400px;
-    
-}
-
-.wrapper-header-aux {
-    height: 300px;
-    background-color: #F3D6A1;
 
 }
+
 
 header {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #a07f43;
     color: #eaeaea;
-    margin: 30px;
-    height: 300px;
+    height: 200px;
 }
-.header-logo{
+
+.header-logo {
     display: inline-block;
     margin-right: 10px;
 }
-
 
 .wrapper-nav-bar {
     display: flex;
@@ -101,7 +100,6 @@ header {
     text-decoration: none;
     color: #eaeaea;
     margin: 20px;
-    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 }
 
@@ -156,7 +154,6 @@ header {
     padding: 15px;
     color: #414140;
     text-decoration: none;
-    font-family: 'Baloo Bhai', cursive;
 }
 
 .nav-bar-Menu li:hover .nav-bar-subMenu {
@@ -175,11 +172,9 @@ header {
     width: 100px;
     margin: 15px 15px auto;
     background-color: sandybrown;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
-li{
+li {
     list-style: none;
 }
 
@@ -215,10 +210,10 @@ li{
 
 .box:hover {
     flex: 1.3;
-  
+
 }
 
-.a1{
+.a1 {
     background-image: url("http://acn.ucentral.co/images/BANNER-SALUD-FÍSICA-COMPLETO.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -245,12 +240,13 @@ li{
     padding: 10px;
 
 }
-.box-button{
+
+.box-button {
     margin-top: 60px;
     background-color: rgba(0, 0, 0, 0.47);
 }
 
-.Boton-Personalizado { 
+.Boton-Personalizado {
     text-decoration: none;
     background-color: transparent;
     display: block;
@@ -304,12 +300,9 @@ li{
 }
 
 .info {
-    margin: 30px;
+    margin: 30px auto;
     padding: 10px;
     max-width: 80%;
-    position: relative;
-    height: 100%;
-    display: block;
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.47);
 }
 
@@ -318,7 +311,8 @@ li{
     display: none;
 
 }
-.input-consulta{
+
+.input-consulta {
     height: 150px;
 }
 
@@ -328,16 +322,17 @@ li{
 
 /* Fin Farmacias  */
 
-.end-file{
+.end-file {
     background-image: url(./Imagenes/Logo-UNSL.jpeg);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center center;
-    position:  relative;
+    position: relative;
     margin-left: 33%;
     height: 150px;
     width: 500px;
 }
+
 /*/WebSiteDospu-Front/Front/Imagenes/Logo-UNSL.jpeg*/
 
 
@@ -350,19 +345,19 @@ li{
 /* ORDEN WEB */
 
 /* barra de pasos de la orden web */
-.progressbar{
+.progressbar {
     display: flex;
     margin-bottom: 15px;
     counter-reset: step;
 }
 
-.progressbar_option{
+.progressbar_option {
     width: 100%;
     text-align: center;
     position: relative;
 }
 
-.progressbar_option:before{
+.progressbar_option:before {
     display: flex;
     content: counter(step);
     counter-increment: step;
@@ -377,7 +372,7 @@ li{
     z-index: 2;
 }
 
-.progressbar_option:after{
+.progressbar_option:after {
     display: block;
     content: "";
     width: 100%;
@@ -389,43 +384,42 @@ li{
     z-index: 1;
 }
 
-.progressbar_option:first-child:after{
+.progressbar_option:first-child:after {
     content: none;
 
 }
 
 .progressbar_option.active:after,
-.progressbar_option.active:before{
+.progressbar_option.active:before {
     background-color: #BE7E17;
 }
 
 
-/* titulos */
-H3.form-orden_titulo {text-align: center}
-
-.step-titulo{
+.step-titulo {
     height: 30px;
     width: 1060px;
     background-color: #F3D6A1;
 }
 
-H4.paso {text-align: center}
-
-/*alineacion centrada*/
-.step-body{
-    text-align:center;
+H4.paso {
+    text-align: center
 }
 
-.step-info-beneficiario{
+/*alineacion centrada*/
+.step-body {
     text-align: center;
 }
 
-.step-button{
-    text-align:center;
+.step-info-beneficiario {
+    text-align: center;
+}
+
+.step-button {
+    text-align: center;
 }
 
 /*botones e input*/
-.boton{
+.boton {
     background-color: #F3D6A1;
     display: inline-block;
     padding: 5px;
@@ -435,49 +429,52 @@ H4.paso {text-align: center}
     cursor: pointer;
 }
 
-.input{
+.input {
     padding: 5px 60px;
     display: inline-block;
     margin-bottom: 5px;
 }
 
 
-/* para cambiar de pasos*/
+.form-orden-titulo {
+    text-align: center
+}
 
-.form-orden_body{
+.form-orden-body {
     display: flex;
     align-items: flex-start;
 }
 
-.root{
+.root {
     overflow: hidden;
 }
 
-.step{
+.step {
     opacity: 0;
     transition: all .2s linear;
 }
 
-.step.active{
+.step.active {
     opacity: 1;
 }
 
-.step.to-left{
+.step.to-left {
     margin-left: -100%;
 }
 
-.step.inactive{
+.step.inactive {
     animation-name: scale;
     animation-duration: 0.3s;
     animation-direction: alternate;
     animation-iteration-count: 2;
 }
 
-@keyframes scale{
-    from{
+@keyframes scale {
+    from {
         transform: scale(1);
     }
-    to{
+
+    to {
         transform: scale(1.1);
     }
 }
