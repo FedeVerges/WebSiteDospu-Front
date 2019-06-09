@@ -114,12 +114,14 @@
         <fieldset>
             <h2 class="fs-title">Beneficiario</h2>
             <label for="i-dni">Beneficiario DNI</label>
-            <input type="text" name="i-dni" id="i-dni" placeholder="DNI" />
-            <input type="button" name="buscar-dni" class="action-button" value="Buscar" />
-            <input type="text" name="nombre-afiliado" id="nombre-afiliado" placeholder="Nombre" />
-            <input type="text" name="apellido-afiliado" id="apellido-afiliado" placeholder="Apellido" />
+            <input type="text" name="i-dni" id="i-dni" placeholder="Ingrese el DNI" 
+                min="7" max="8" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" requied />
+            <input type="button" name="buscar-dni" class="action-button" id="button-search" value="Buscar" />
+            <input type="text" name="nombre-afiliado" id="nombre-afiliado" placeholder="Nombre" readonly/>
+            <input type="text" name="apellido-afiliado" id="apellido-afiliado" placeholder="Apellido" readonly/>
 
-            <input type="button" name="next" class="next action-button" value="Siguiente" />
+            <input type="button" name="next" class="next action-button" id ="button-Next1" 
+                value="Siguiente" disabled=true/>
         </fieldset>
 
         <fieldset>
@@ -136,17 +138,17 @@
             <input class="input" id="valor" value="Valor de la orden" type="text">
 
             <input type="button" name="previous" class="previous action-button" value="Atras" />
-            <input type="button" name="next" class="next action-button" value="Siguiente" />
+            <input type="button" name="next" class="next action-button" id ="button-Next2" value="Siguiente" />
         </fieldset>
 
         <fieldset>
             <h2 class="fs-title">Confirmar</h2>
-            <input class="input" id="nombre-afiliado" value="Nombre del afiliado" type="text">
-            <input class="input" id="apellido-afiliado" value="Apellido del afiliado" type="text">
-            <input class="input" id="DNI-afiliado" value="DNI del afiliado" type="text">
-            <input class="input" id="tipo-orden" value="Tipo de orden" type="text">
-            <input class="input" id="prestador" value="Prestador" type="text">
-            <input class="input" id="valor" value="Valor de la orden" type="text">
+            <input class="input" id="nombre-afiliado-show" value="Nombre del afiliado" type="text" readonly>
+            <input class="input" id="apellido-afiliado-show" value="Apellido del afiliado" type="text" readonly>
+            <input class="input" id="DNI-afiliado-show" value="DNI del afiliado" type="text" readonly>
+            <input class="input" id="tipo-orden-show" value="Tipo de orden" type="text" readonly>
+            <input class="input" id="prestador-show" value="Prestador" type="text" readonly>
+            <input class="input" id="valor-show" value="Valor de la orden" type="text" readonly>
 
             <input type="button" name="previous" class="previous action-button" value="Atras" />
             <input type="submit" name="submit" class="submit action-button" id="finish-order" value="Confirmar" />
