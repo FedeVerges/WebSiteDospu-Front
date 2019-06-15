@@ -41,17 +41,39 @@ class OrderType {
 
 function getLenders() {
     const siguiente = document.getElementById("button-Next1")
-
+    const status = 0
     const lenderArray = []
     siguiente.addEventListener('click', async () => {
-
+        
         const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
+        handleResponseBackend(response)
         const myJson = await response.json(); //extract JSON from the http response
+        console.log(myJson)
         putLenders(myJson)
     })
 }
 
 /* End get Lenders */
+
+
+/* Get Partners */
+
+
+function getPartner(dni) {
+    const siguiente = document.getElementById("button-search")
+
+    const lenderArray = []
+    siguiente.addEventListener('click', async () => {
+
+        const response = await fetch('http://localhost:9000/api/partners/' + dni);
+        const myJson = await response.json(); //extract JSON from the http response
+        console.log(myJson)
+
+        //showPerson(myJson)
+    })
+}
+
+/* End Get Partners */
 
 
 /* Partners */
@@ -84,6 +106,8 @@ showPerson(arregloAfiliados);
 showOrderCost(arregloOrdenes);
 getLenders();
 
+//getPartner(29388541);
+
 showInformation();
 pushOrder();
 
@@ -112,11 +136,6 @@ function putLenders(arregloPrestadores) {
         selector.appendChild(orderElement);
     }
 }
-/* 
-function putValue (){
-    const selector = document.getElementById("tipo-orden");
-    
-} */
 
 function pushOrder() {
     const next_button = document.getElementById("finish-order");
@@ -176,6 +195,8 @@ function getBeneficiary() {
 }
 // getBeneficiary();
 
+
+/* HandleResponse */
 function handleWebOrderResponse(response) {
     const statusCode = response.status
     if (statusCode === 200) {
@@ -185,7 +206,7 @@ function handleWebOrderResponse(response) {
     } else {
         // Diferent types of errors.        
         switch (statusCode) {
-            case 400:
+            case 404:
                 alert("WebForm error, please check values")
                 break;
             case 500:
@@ -200,6 +221,28 @@ function handleWebOrderResponse(response) {
     }
 }
 
+
+function handleResponseBackend(response) {
+    const statusCode = response.status
+    if (statusCode === 200) {
+        console.log("Success")
+    } else {
+        // Diferent types of errors.        
+        switch (statusCode) {
+            case 404:
+                alert("Entry error, please check values (404)")
+                break;
+            case 500:
+                alert("Database error, please call technical support (500)")
+                break;
+            default:
+                alert("Default Error")
+                break;
+        }
+        response.json()
+            .then(errorMap => console.log(errorMap))
+    }
+}
 /*Formulario */
 
 function showOrderCost(arrayOrder) {
@@ -214,6 +257,12 @@ function showOrderCost(arrayOrder) {
             }
         });
 }
+
+// function showPartner(result) {
+//             document.getElementById("nombre-afiliado").value = result.name;
+//             document.getElementById("apellido-afiliado").value = result.Surname;
+//             document.getElementById("button-Next1").disabled = false; 
+// }
 
 function showPerson(array) {
     const buttonSearch = document.getElementById("button-search");
