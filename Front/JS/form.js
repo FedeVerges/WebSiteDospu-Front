@@ -316,6 +316,14 @@ function givePerson(arrayPartner) {
 }
 
 function showHistorial(arrayWebOrders){
-    /* si encuentra al menos una orden va a la pagina de historial y la muestra, sino tira un
-    cartel que no hay ordenes a nombre del chabon*/ 
+    const buttonHistorial = document.getElementById("button-Historial");
+    buttonHistorial.addEventListener('click', function (e){
+        if (arrayWebOrders == null){
+            alert("No se encuentran ordenes del beneficiario");
+        }
+        else{
+            document.location.href="Historial.html"
+        }
+    });
 }
+
