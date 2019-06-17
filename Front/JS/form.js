@@ -50,9 +50,18 @@ const l2 = new Lender("Facundo", "Pereira","20121231233")
 const ot1 = new OrderType ("50c","tipo1",50)
 const ot2 = new OrderType ("50d","tipo2",150)
 
+/* OrderWeb */
+
+const ow1 = new WebOrder ("111",ot1,l1,p1)
+const ow2 = new WebOrder ("222",ot2,l2,p2)
+
 const arregloOrdenes = []
 const arregloPrestadores= []
 const arregloAfiliados= []
+const arregloOrdenesWeb = []
+
+arregloOrdenesWeb.push(ow1);
+arregloAfiliados.push(ow2);
 
 arregloAfiliados.push(p1);
 arregloAfiliados.push(p2);
@@ -69,6 +78,7 @@ putLenders(arregloPrestadores);
 showOrderCost(arregloOrdenes);
 showInformation();
 pushOrder();
+showHistorial(arregloOrdenesWeb);
 
 
 function TakeOrder(arregloOrdenes) {
@@ -224,6 +234,7 @@ function showPerson(array){
             document.getElementById("nombre-afiliado").value=result.name;
             document.getElementById("apellido-afiliado").value=result.surname;
             document.getElementById("button-Next1").disabled=false;
+            document.getElementById("button-Historial").disabled=false
         }
         else{
             alert("El DNI ingresado no se cuentra en la Base de Datos");
@@ -255,4 +266,9 @@ function givePerson(arrayPartner){
             return null;
         }
     }
+}
+
+function showHistorial(arrayWebOrders){
+    /* si encuentra al menos una orden va a la pagina de historial y la muestra, sino tira un
+    cartel que no hay ordenes a nombre del chabon*/ 
 }
