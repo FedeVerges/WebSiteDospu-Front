@@ -85,18 +85,27 @@ const ot3 = new OrderType("50e", "Sesion de Psicoterapia Individual", 150)
 const ot4 = new OrderType("50f", "Practica Odontológica", 200)
 
 
-const arregloOrdenes = []
-const arregloPrestadores = []
-const arregloAfiliados = []
+/* OrderWeb */
 /* 
+const ow1 = new WebOrder ("111",ot1,l1,p1)
+const ow2 = new WebOrder ("222",ot2,l2,p2)
+ */
+const arregloOrdenes = []
+const arregloPrestadores= []
+const arregloAfiliados= []
+const arregloOrdenesWeb = []
+/* 
+arregloOrdenesWeb.push(ow1);
+arregloAfiliados.push(ow2);
+
 arregloAfiliados.push(p1);
-arregloAfiliados.push(p2); */
+arregloAfiliados.push(p2); 
 
 arregloOrdenes.push(ot1);
 arregloOrdenes.push(ot2);
 arregloOrdenes.push(ot3);
 arregloOrdenes.push(ot4);
-
+ */
 TakeOrder(arregloOrdenes);
 //showPerson(arregloAfiliados);
 showOrderCost(arregloOrdenes);
@@ -106,6 +115,7 @@ getPartner();
 
 showInformation();
 pushOrder();
+showHistorial(arregloOrdenesWeb);
 
 
 function TakeOrder(arregloOrdenes) {
@@ -255,14 +265,25 @@ function showOrderCost(arrayOrder) {
 }
 
 function showPartner(result) {
-        if(result != null){
             document.getElementById("nombre-afiliado").value = result.Name;
             document.getElementById("apellido-afiliado").value = result.Surname;
             document.getElementById("button-Next1").disabled = false; 
-        }else{
-            alert("El usuario no existe en la base de datos");
+}
+
+/* function showPerson(array) {
+    const buttonSearch = document.getElementById("button-search");
+    buttonSearch.addEventListener('click', function (e) {
+        const result = givePerson(array);
+        if (result != null) {
+            document.getElementById("nombre-afiliado").value=result.name;
+            document.getElementById("apellido-afiliado").value=result.surname;
+            document.getElementById("button-Next1").disabled=false;
+        }
+        else{
+            alert("El DNI ingresado no se cuentra en la Base de Datos");
         }
 }
+} */
 
 
 function showInformation() {
@@ -288,4 +309,9 @@ function givePerson(arrayPartner) {
             return null;
         }
     }
+}
+
+function showHistorial(arrayWebOrders){
+    /* si encuentra al menos una orden va a la pagina de historial y la muestra, sino tira un
+    cartel que no hay ordenes a nombre del chabon*/ 
 }
