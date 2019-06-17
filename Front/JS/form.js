@@ -97,24 +97,22 @@ const arregloOrdenesWeb = []
 /* 
 arregloOrdenesWeb.push(ow1);
 arregloAfiliados.push(ow2);
-
-arregloAfiliados.push(p1);
-arregloAfiliados.push(p2); 
-
+*/
 arregloOrdenes.push(ot1);
 arregloOrdenes.push(ot2);
 arregloOrdenes.push(ot3);
 arregloOrdenes.push(ot4);
- */
+ 
 TakeOrder(arregloOrdenes);
 //showPerson(arregloAfiliados);
 showOrderCost(arregloOrdenes);
 getLenders();
-
 getPartner();
 
 showInformation();
+
 pushOrder();
+
 showHistorial(arregloOrdenesWeb);
 
 camposVacios();
