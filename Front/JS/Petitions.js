@@ -30,12 +30,27 @@ function putNews(arrayNews){
         const link =  document.createElement("a")
         /*  create the new  */
         
+        /* Title */
         const text = document.createTextNode(arrayNews.Title)
         title.appendChild(text)
         parent_div[0].appendChild(title)
 
-
+        /* Body */
+        text = document.createTextNode(arrayNews.Body)
+        body.appendChild(text)
+        parent_div[0].appendChild(body)
         
+        /* Date */
+        
+        text = document.createTextNode(arrayNews.Date)
+        date.appendChild(text)
+        parent_div[0].appendChild(date)
+
+        /* Links */
+
+        text = document.createTextNode(arrayNews.Links)
+        link.appendChild(text)
+        parent_div[0].appendChild(link)
 
 
     }
