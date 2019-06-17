@@ -117,6 +117,8 @@ showInformation();
 pushOrder();
 showHistorial(arregloOrdenesWeb);
 
+camposVacios();
+
 
 function TakeOrder(arregloOrdenes) {
     const selector = document.getElementById("tipo-orden");
@@ -144,45 +146,51 @@ function putLenders(arregloPrestadores) {
 }
 
 function pushOrder() {
-    const next_button = document.getElementById("finish-order");
-    const afiliado = new Partner("-", "-", "-", "-", "-", "-");
-    const tipoOrden = new OrderType("-", "-", 0);
-    const lender = new Lender("-", "-", "-");
-    const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
-
-    next_button.onclick = () => {
-        afiliado.name = document.getElementById("nombre-afiliado-show").value;
-        afiliado.surname = document.getElementById("apellido-afiliado-show").value;
-        afiliado.dni = document.getElementById("DNI-afiliado-show").value;
-        lender.name = document.getElementById("prestador-show").value;
-        tipoOrden.type = document.getElementById("tipo-orden-show").value;
-        tipoOrden.orderCost = document.getElementById("valor-show").value;
-
-        webOrder.orderType = tipoOrden.type;
-        webOrder.lender = lender;
-        webOrder.partner = afiliado;
-
-        fetch("http://localhost:9000/api/weborder", {
-                method: 'post',
-                mode: "no-cors",
-                headers: new Headers({
-                    'content-type': 'application/json'
-                }),
-                body: JSON.stringify({
-                    PartnerDni: afiliado.dni,
-                    PartnerName: afiliado.name,
-                    PartnerSurname: afiliado.surname,
-                    LenderCuil: lender.cuil,
-                    OrderType: {
-                        orderTypeId: tipoOrden.orderTypeID,
-                        Type: tipoOrden.type,
-                        orderCost: tipoOrden.orderCost
-                    }
-
+    const resultado= camposVacios();
+    if (resultado){
+        alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
+    }
+    else{
+        const next_button = document.getElementById("finish-order");
+        const afiliado = new Partner("-", "-", "-", "-", "-", "-");
+        const tipoOrden = new OrderType("-", "-", 0);
+        const lender = new Lender("-", "-", "-");
+        const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
+    
+        next_button.onclick = () => {
+            afiliado.name = document.getElementById("nombre-afiliado-show").value;
+            afiliado.surname = document.getElementById("apellido-afiliado-show").value;
+            afiliado.dni = document.getElementById("DNI-afiliado-show").value;
+            lender.name = document.getElementById("prestador-show").value;
+            tipoOrden.type = document.getElementById("tipo-orden-show").value;
+            tipoOrden.orderCost = document.getElementById("valor-show").value;
+    
+            webOrder.orderType = tipoOrden.type;
+            webOrder.lender = lender;
+            webOrder.partner = afiliado;
+    
+            fetch("http://localhost:9000/api/weborder", {
+                    method: 'post',
+                    mode: "no-cors",
+                    headers: new Headers({
+                        'content-type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        PartnerDni: afiliado.dni,
+                        PartnerName: afiliado.name,
+                        PartnerSurname: afiliado.surname,
+                        LenderCuil: lender.cuil,
+                        OrderType: {
+                            orderTypeId: tipoOrden.orderTypeID,
+                            Type: tipoOrden.type,
+                            orderCost: tipoOrden.orderCost
+                        }
+    
+                    })
+    
                 })
-
-            })
-            .then(handleWebOrderResponse)
+                .then(handleWebOrderResponse)
+        }
     }
 }
 /* This method send the dni number to the DOSPU's API and then 
@@ -268,6 +276,7 @@ function showPartner(result) {
             document.getElementById("nombre-afiliado").value = result.Name;
             document.getElementById("apellido-afiliado").value = result.Surname;
             document.getElementById("button-Next1").disabled = false; 
+            document.getElementById("button-Historial").disabled = false; 
 }
 
 /* function showPerson(array) {
@@ -318,8 +327,23 @@ function showHistorial(arrayWebOrders){
             alert("No se encuentran ordenes del beneficiario");
         }
         else{
-            document.location.href="Historial.html"
+            document.location.href="Historial.html";
+            for (let index = 0; index < arrayWebOrders.length; index++) {
+                const element = arrayWebOrders[index];
+            }
         }
     });
 }
+
+function camposVacios(){
+    const tipoOrden= document.getElementById("tipo-orden-show").value;
+    const prestador= document.getElementById("prestador-show").value;
+    if(tipoOrden=="..." & prestador=="..."){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 
