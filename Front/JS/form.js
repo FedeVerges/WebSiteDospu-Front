@@ -268,11 +268,11 @@ function showOrderCost(arrayOrder) {
         });
 }
 
-// function showPartner(result) {
+/* function showPartner(result) {
 //             document.getElementById("nombre-afiliado").value = result.name;
 //             document.getElementById("apellido-afiliado").value = result.Surname;
 //             document.getElementById("button-Next1").disabled = false; 
-// }
+// }*/
 
 function showPerson(array) {
     const buttonSearch = document.getElementById("button-search");
