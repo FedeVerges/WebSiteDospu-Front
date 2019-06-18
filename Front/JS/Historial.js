@@ -1,18 +1,21 @@
 function getWebOrdersFromPartner(){
     const historial_button = document.getElementById('button-Historial')
-
+    
     historial_button.addEventListener('click',async()=>{
         const DNI = document.getElementById("i-dni").value;
+        document.location.href = "Historial.html"
         const response = await fetch('http://localhost:9000/api/partners/weborders/' + DNI)
         const myJson = await response.json();
-
         CreateOrderList(myJson)
         
     })
 }
 
 function CreateOrderList(ListOfOrders){
-    const list = document.getElementById('Order-List')
+    const list = document.getElementById("Order-List")
+    console.log(document.location)
+    console.log(ListOfOrders)
+    console.log(list)
 
     for (const key in ListOfOrders) {
     

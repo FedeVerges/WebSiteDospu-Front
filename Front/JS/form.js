@@ -44,7 +44,7 @@ function getLenders() {
     const status = 0
     const lenderArray = []
     siguiente.addEventListener('click', async () => {
-        
+
         const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
         handleResponseBackend(response)
         const myJson = await response.json(); //extract JSON from the http response
@@ -58,7 +58,7 @@ function getLenders() {
 /* Get Partners */
 function getPartner() {
     const siguiente = document.getElementById("button-search")
-    
+
 
     siguiente.addEventListener('click', async () => {
         const DNI = document.getElementById("i-dni").value;
@@ -70,7 +70,6 @@ function getPartner() {
 }
 
 /* End Get Partners */
-
 
 /* Partners */
 // const p1 = new Partner("Federico", "Verges", "41221778", "5/5/2019", "Titular", "12312312");
@@ -91,8 +90,8 @@ const ow1 = new WebOrder ("111",ot1,l1,p1)
 const ow2 = new WebOrder ("222",ot2,l2,p2)
  */
 const arregloOrdenes = []
-const arregloPrestadores= []
-const arregloAfiliados= []
+const arregloPrestadores = []
+const arregloAfiliados = []
 const arregloOrdenesWeb = []
 /* 
 arregloOrdenesWeb.push(ow1);
@@ -102,7 +101,7 @@ arregloOrdenes.push(ot1);
 arregloOrdenes.push(ot2);
 arregloOrdenes.push(ot3);
 arregloOrdenes.push(ot4);
- 
+
 TakeOrder(arregloOrdenes);
 //showPerson(arregloAfiliados);
 showOrderCost(arregloOrdenes);
@@ -113,7 +112,8 @@ showInformation();
 
 pushOrder();
 
-// showHistorial(arregloOrdenesWeb);
+//showHistorial();
+getWebOrdersFromPartner();
 
 camposVacios();
 
@@ -137,24 +137,23 @@ function putLenders(arregloPrestadores) {
     for (let index = 0; index < arregloPrestadores.length; index++) {
         const orderElement = document.createElement("option");
         orderElement.setAttribute("value", arregloPrestadores[index].Name);
-        const texto = document.createTextNode(arregloPrestadores[index].Name + ' ' +arregloPrestadores[index].Surname );
+        const texto = document.createTextNode(arregloPrestadores[index].Name + ' ' + arregloPrestadores[index].Surname);
         orderElement.appendChild(texto);
         selector.appendChild(orderElement);
     }
 }
 
 function pushOrder() {
-    const resultado= camposVacios();
-    if (resultado){
+    const resultado = camposVacios();
+    if (resultado) {
         alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
-    }
-    else{
+    } else {
         const next_button = document.getElementById("finish-order");
         const afiliado = new Partner("-", "-", "-", "-", "-", "-");
         const tipoOrden = new OrderType("-", "-", 0);
         const lender = new Lender("-", "-", "-");
         const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
-    
+
         next_button.onclick = () => {
             afiliado.name = document.getElementById("nombre-afiliado-show").value;
             afiliado.surname = document.getElementById("apellido-afiliado-show").value;
@@ -162,11 +161,11 @@ function pushOrder() {
             lender.name = document.getElementById("prestador-show").value;
             tipoOrden.type = document.getElementById("tipo-orden-show").value;
             tipoOrden.orderCost = document.getElementById("valor-show").value;
-    
+
             webOrder.orderType = tipoOrden.type;
             webOrder.lender = lender;
             webOrder.partner = afiliado;
-    
+
             fetch("http://localhost:9000/api/weborder", {
                     method: 'post',
                     mode: "no-cors",
@@ -183,9 +182,9 @@ function pushOrder() {
                             Type: tipoOrden.type,
                             orderCost: tipoOrden.orderCost
                         }
-    
+
                     })
-    
+
                 })
                 .then(handleWebOrderResponse)
         }
@@ -271,10 +270,10 @@ function showOrderCost(arrayOrder) {
 }
 
 function showPartner(result) {
-            document.getElementById("nombre-afiliado").value = result.Name;
-            document.getElementById("apellido-afiliado").value = result.Surname;
-            document.getElementById("button-Next1").disabled = false; 
-            document.getElementById("button-Historial").disabled = false; 
+    document.getElementById("nombre-afiliado").value = result.Name;
+    document.getElementById("apellido-afiliado").value = result.Surname;
+    document.getElementById("button-Next1").disabled = false;
+    document.getElementById("button-Historial").disabled = false;
 }
 
 /* function showPerson(array) {
@@ -317,31 +316,21 @@ function givePerson(arrayPartner) {
         }
     }
 }
-
-function showHistorial(arrayWebOrders){
+/* 
+function showHistorial() {
     const buttonHistorial = document.getElementById("button-Historial");
-    buttonHistorial.addEventListener('click', function (e){
-        if (arrayWebOrders == null){
-            alert("No se encuentran ordenes del beneficiario");
-        }
-        else{
-            document.location.href="Historial.html";
-            for (let index = 0; index < arrayWebOrders.length; index++) {
-                const element = arrayWebOrders[index];
-            }
-        }
+    buttonHistorial.addEventListener('click', function (e) {
+        getWebOrdersFromPartner
+        document.location.href = "Historial.html";
     });
-}
+} */
 
-function camposVacios(){
-    const tipoOrden= document.getElementById("tipo-orden-show").value;
-    const prestador= document.getElementById("prestador-show").value;
-    if(tipoOrden=="..." & prestador=="..."){
+function camposVacios() {
+    const tipoOrden = document.getElementById("tipo-orden-show").value;
+    const prestador = document.getElementById("prestador-show").value;
+    if (tipoOrden == "..." & prestador == "...") {
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }
-
-
