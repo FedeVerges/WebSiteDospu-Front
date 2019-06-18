@@ -113,12 +113,11 @@ showInformation();
 
 pushOrder();
 
-showHistorial(arregloOrdenesWeb);
+// showHistorial(arregloOrdenesWeb);
 
 
 function TakeOrder(arregloOrdenes) {
     const selector = document.getElementById("tipo-orden");
-    console.log(selector);
 
     for (let index = 0; index < arregloOrdenes.length; index++) {
         const orderElement = document.createElement("option");
@@ -131,6 +130,7 @@ function TakeOrder(arregloOrdenes) {
 
 function putLenders(arregloPrestadores) {
     const selector = document.getElementById("prestador");
+    console.log(selector)
 
     for (let index = 0; index < arregloPrestadores.length; index++) {
         const orderElement = document.createElement("option");
@@ -172,9 +172,9 @@ function pushOrder() {
                     PartnerSurname: afiliado.surname,
                     LenderCuil: lender.cuil,
                     OrderType: {
-                        orderTypeId: tipoOrden.orderTypeID,
+                        OrderTypeId: tipoOrden.orderTypeID,
                         Type: tipoOrden.type,
-                        orderCost: tipoOrden.orderCost
+                        OrderCost: tipoOrden.orderCost
                     }
 
                 })
@@ -309,9 +309,4 @@ function givePerson(arrayPartner) {
             return null;
         }
     }
-}
-
-function showHistorial(arrayWebOrders){
-    /* si encuentra al menos una orden va a la pagina de historial y la muestra, sino tira un
-    cartel que no hay ordenes a nombre del chabon*/ 
 }
