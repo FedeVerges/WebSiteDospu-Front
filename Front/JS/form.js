@@ -178,9 +178,9 @@ function pushOrder() {
                         PartnerSurname: afiliado.surname,
                         LenderCuil: lender.cuil,
                         OrderType: {
-                            orderTypeId: tipoOrden.orderTypeID,
+                            OrderTypeId: tipoOrden.orderTypeID,
                             Type: tipoOrden.type,
-                            orderCost: tipoOrden.orderCost
+                            OrderCost: tipoOrden.orderCost
                         }
 
                     })
