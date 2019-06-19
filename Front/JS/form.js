@@ -37,6 +37,19 @@ class OrderType {
     }
 }
 
+
+function getLenders() {
+    const select = document.getElementById("tipo-orden");
+    const status = 0;
+    const lenderArray = [];
+    select.addEventListener('change', async () => {
+        const response = await fetch('http://localhost:9000/api/lenders/'+select.options[select.selectedIndex].value);
+        handleResponseBackend(response);
+        const myJson = await response.json(); //extract JSON from the http response
+        lenders = myJson
+        putLenders(myJson)
+    })
+}
 /* End get Lenders */
 
 
@@ -115,18 +128,6 @@ function getDnitoHistorial() {
     })
 }
 
-/* get Lenders */
-
-function getLenders() {
-    const siguiente = document.getElementById("button-Next1")
-    siguiente.addEventListener('click', async () => {
-        const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
-        handleResponseBackend(response)
-        const myJson = await response.json(); //extract JSON from the http response
-        lenders = myJson
-        putLenders(myJson)
-    })
-}
 
 function TakeOrder(arregloOrdenes) {
     const selector = document.getElementById("tipo-orden");
