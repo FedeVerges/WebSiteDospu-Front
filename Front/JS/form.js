@@ -1,52 +1,38 @@
-class WebOrder {
-    constructor(number, date, AuthCode, BarsCode, orderType, lender, partner) {
-        this.orderNumber = number,
-            this.date = date,
-            this.authCode = AuthCode,
-            this.BarsCode = BarsCode,
-            this.orderType = orderType,
-            this.lender = lender,
-            this.partner = partner;
-    }
-}
 class Lender {
     constructor(name, surname, cuil) {
-        this.name = name,
-            this.surname = surname,
-            this.cuil = cuil;
+        this.name = name;
+        this.surname = surname;
+        this.cuil = cuil;
     }
 }
 
 class Partner {
-    constructor(name, surname, dni, birthdate, type, id) {
-        this.name = name,
-            this.surname = surname,
-            this.dni = dni,
-            this.birthdate = birthdate,
-            this.type = type,
-            this.id = id
+    constructor(name, surname, dni,  type, id) {
+        this.name = name;
+        this.surname = surname;
+        this.dni = dni;
+        this.type = type;
+        this.id = id;
     }
 }
 
 
 class OrderType {
     constructor(id, type, orderCost) {
-        this.orderTypeID = id,
-            this.type = type,
-            this.orderCost = orderCost;
+        this.orderTypeID = id;
+        this.type = type;
+        this.orderCost = orderCost;
     }
 }
 
 
 function getLenders() {
     const select = document.getElementById("tipo-orden");
-    const status = 0;
-    const lenderArray = [];
     select.addEventListener('change', async () => {
-        const response = await fetch('http://localhost:9000/api/lenders/'+select.options[select.selectedIndex].value);
+        const response = await fetch('http://localhost:9000/api/lenders/' + select.options[select.selectedIndex].value);
         handleResponseBackend(response);
         const myJson = await response.json(); //extract JSON from the http response
-        lenders = myJson
+        lenders = myJson;
         putLenders(myJson)
     })
 }
@@ -55,7 +41,7 @@ function getLenders() {
 
 /* Get Partners */
 function getPartner() {
-    const siguiente = document.getElementById("button-search")
+    const siguiente = document.getElementById("button-search");
 
 
     siguiente.addEventListener('click', async () => {
@@ -77,24 +63,19 @@ function getPartner() {
 
 /* OrderType */
 
-const ot1 = new OrderType("50c", "Consulta médica", 50)
-const ot2 = new OrderType("50d", "Consulta psicológica", 100)
-const ot3 = new OrderType("50e", "Sesión de psicoterapia individual", 150)
-const ot4 = new OrderType("50f", "Práctica odontológica", 200)
+const ot1 = new OrderType(1, "Consulta médica", 50);
+const ot2 = new OrderType(2, "Consulta psicológica", 100);
+const ot3 = new OrderType(3, "Sesión de psicoterapia individual", 150);
+const ot4 = new OrderType(4, "Práctica odontológica", 200);
 
 /* OrderWeb */
 /* 
 const ow1 = new WebOrder ("111",ot1,l1,p1)
 const ow2 = new WebOrder ("222",ot2,l2,p2)
  */
-const arregloOrdenes = []
-let lenders = {}
-const arregloAfiliados = []
-const arregloOrdenesWeb = []
-/* 
-arregloOrdenesWeb.push(ow1);
-arregloAfiliados.push(ow2);
-*/
+const arregloOrdenes = [];
+let lenders;
+
 arregloOrdenes.push(ot1);
 arregloOrdenes.push(ot2);
 arregloOrdenes.push(ot3);
@@ -121,10 +102,9 @@ camposVacios();
 
 function getDnitoHistorial() {
     const historial_button = document.getElementById("button-Historial");
-    const dni = null
-    historial_button.addEventListener('click', function(){
+    historial_button.addEventListener('click', function () {
         const DNI = document.getElementById("i-dni").value;
-        document.location.href= "Historial.html?dni=" + DNI;
+        document.location.href = "Historial.html?dni=" + DNI;
     })
 }
 
@@ -152,70 +132,52 @@ function putLenders(arregloPrestadores) {
         selector.appendChild(orderElement);
     }
 }
-function removeOptions(selectbox)
-{
-    var i;
-    for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
-    {
+
+function removeOptions(selectbox) {
+    for (let i = selectbox.options.length - 1; i >= 0; i--) {
         selectbox.remove(i);
     }
 }
 
-function pushOrder(lenders) {
+function pushOrder() {
     const resultado = camposVacios();
     if (resultado) {
         alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
     } else {
         const next_button = document.getElementById("finish-order");
-        const afiliado = new Partner("-", "-", "-", "-", "-", "-");
+        const afiliado = new Partner("-", "-", "-", "-", "-");
         const tipoOrden = new OrderType("-", "-", 0);
         const lender = new Lender("-", "-", "-");
-        const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
-
-
-
 
         next_button.onclick = () => {
             afiliado.name = document.getElementById("nombre-afiliado-show").value;
             afiliado.surname = document.getElementById("apellido-afiliado-show").value;
             afiliado.dni = document.getElementById("DNI-afiliado-show").value;
             lender.name = document.getElementById("prestador-show").value;
-            lender.cuil = giveMeLender(lender.name)
+            lender.cuil = giveMeLender(lender.name);
             tipoOrden.type = document.getElementById("tipo-orden-show").value;
             tipoOrden.orderCost = document.getElementById("valor-show").value;
-            tipoOrden.orderTypeID = getOrderID(tipoOrden.type)
+            tipoOrden.orderTypeID = getOrderID(tipoOrden.type);
 
-            webOrder.orderType = tipoOrden.type;
-            webOrder.lender = lender;
-            webOrder.partner = afiliado;
-           
-            console.log('JSON:   ')
-            console.log(afiliado.dni)
-            console.log(afiliado.name)
-            console.log(afiliado.surname)
-            console.log(lender.cuil)
-            console.log(tipoOrden.orderTypeID)
-            console.log(tipoOrden.type)
-            console.log(tipoOrden.orderCost)
-
+            const requestBody = JSON.stringify({
+                PartnerDNI: parseInt(afiliado.dni),
+                PartnerName: afiliado.name,
+                PartnerSurname: afiliado.surname,
+                LenderCuil: lender.cuil,
+                OrderType: {
+                    OrderTypeId: tipoOrden.orderTypeID,
+                    Type: tipoOrden.type,
+                    OrderCost: parseFloat(tipoOrden.orderCost)
+                }
+            });
 
             fetch("http://localhost:9000/api/weborder", {
                     method: 'post',
-                    mode: "cors",
+                    /* Agregar mode: "no-cors" rompe el backend. No se por que */
                     headers: new Headers({
-                        'content-type': 'application/json'
+                        'Content-Type': 'application/json'
                     }),
-                    body: JSON.stringify({
-                        PartnerDNI: afiliado.dni,
-                        PartnerName: afiliado.name,
-                        PartnerSurname: afiliado.surname,
-                        LenderCuil: lender.cuil,
-                        OrderType: {
-                            OrderTypeId: tipoOrden.orderTypeID,
-                            Type: tipoOrden.type,
-                            OrderCost: tipoOrden.orderCost
-                        }
-                    })
+                    body: requestBody
                 })
                 .then(handleWebOrderResponse)
         }
@@ -223,61 +185,43 @@ function pushOrder(lenders) {
 }
 
 
-function getOrderID(tipoOrden){
+function getOrderID(tipoOrden) {
     for (const key in arregloOrdenes) {
-        if (arregloOrdenes[key].type == tipoOrden) {
+        if (arregloOrdenes[key].type === tipoOrden) {
             const element = arregloOrdenes[key].orderTypeID;
-            console.log(element)
+            console.log(element);
             return element
         }
     }
 }
 
-function giveMeLender( name) {
+function giveMeLender(name) {
     for (const lender in lenders) {
-        if(lenders[lender].Name == name){
-            const cuil =lenders[lender].Cuil
-            console.log(cuil)
+        if (lenders[lender].Name === name) {
+            const cuil = lenders[lender].Cuil;
+            console.log(cuil);
             return cuil
         }
     }
-}  
-
-/* This method send the dni number to the DOSPU's API and then 
-it give me a confirmation and the name and surname of the  beneficiaries */
-function getBeneficiary() {
-    const myForm = document.getElementById("Formulario-paso-1");
-    myForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const datos = new FormData(myForm);
-        const dni = datos.get('dni-beneficiario');
-    });
-
-
-    // return nombre,apellido; 
 }
-// getBeneficiary();
-
 
 /* HandleResponse */
 function handleWebOrderResponse(response) {
-    const statusCode = response.status
+    const statusCode = response.status;
     if (statusCode === 202) {
         // The order has been processed correctly
-        console.log("Ok response");
-        alert("The order has been processed correctly");
+        alert("La orden ha sido procesada correctamente.");
     } else {
         // Diferent types of errors.        
         switch (statusCode) {
             case 404:
-                alert("WebForm error, please check values")
+                alert("Error en el formulario");
                 break;
             case 500:
-                alert("Database error, please call technical support")
+                alert("Error en la base de datos. Contacte a un técnico.");
                 break;
             default:
-                alert("Default Error")
+                alert("Error desconocido.");
                 break;
         }
         response.json()
@@ -287,20 +231,20 @@ function handleWebOrderResponse(response) {
 
 
 function handleResponseBackend(response) {
-    const statusCode = response.status
+    const statusCode = response.status;
     if (statusCode === 200) {
         console.log("Success")
     } else {
         // Diferent types of errors.        
         switch (statusCode) {
             case 404:
-                alert("Entry error, please check values (404)")
+                alert("Error de entrada.");
                 break;
             case 500:
-                alert("Database error, please call technical support (500)")
+                alert("Error en la base de datos. Contacte a un técnico.");
                 break;
             default:
-                alert("Default Error")
+                alert("Error desconocido.");
                 break;
         }
         response.json()
@@ -315,7 +259,7 @@ function showOrderCost(arrayOrder) {
         function () {
             const selectedOption = this.options[select.selectedIndex];
             for (let i = 0; i < arrayOrder.length; i++) {
-                if (arrayOrder[i].type == selectedOption.text) {
+                if (arrayOrder[i].type === selectedOption.text) {
                     document.getElementById("valor").value = arrayOrder[i].orderCost;
                 }
             }
@@ -329,25 +273,9 @@ function showPartner(result) {
     document.getElementById("button-Historial").disabled = false;
 }
 
-/* function showPerson(array) {
-    const buttonSearch = document.getElementById("button-search");
-    buttonSearch.addEventListener('click', function (e) {
-        const result = givePerson(array);
-        if (result != null) {
-            document.getElementById("nombre-afiliado").value=result.name;
-            document.getElementById("apellido-afiliado").value=result.surname;
-            document.getElementById("button-Next1").disabled=false;
-        }
-        else{
-            alert("El DNI ingresado no se cuentra en la Base de Datos");
-        }
-}
-} */
-
-
 function showInformation() {
     const buttonNext = document.getElementById("button-Next2");
-    buttonNext.addEventListener("click", function (e) {
+    buttonNext.addEventListener("click", () => {
         document.getElementById("nombre-afiliado-show").value = document.getElementById("nombre-afiliado").value;
         document.getElementById("apellido-afiliado-show").value = document.getElementById("apellido-afiliado").value;
         document.getElementById("DNI-afiliado-show").value = document.getElementById("i-dni").value;
@@ -360,29 +288,16 @@ function showInformation() {
 function givePerson(arrayPartner) {
     const DNI = document.getElementById("i-dni").value;
     for (let i = 0; i < arrayPartner.length; i++) {
-        if (arrayPartner[i].dni == DNI) {
+        if (arrayPartner[i].dni === DNI) {
             return arrayPartner[i];
         } else {
             return null;
         }
     }
 }
- 
-/* 
-function showHistorial() {
-    const buttonHistorial = document.getElementById("button-Historial");
-    buttonHistorial.addEventListener('click', function (e) {
-        getWebOrdersFromPartner
-        document.location.href = "Historial.html";
-    });
-} */
 
 function camposVacios() {
     const tipoOrden = document.getElementById("tipo-orden-show").value;
     const prestador = document.getElementById("prestador-show").value;
-    if (tipoOrden == "..." & prestador == "...") {
-        return true;
-    } else {
-        return false;
-    }
+    return (tipoOrden === "..." & prestador === "...");
 }
