@@ -178,8 +178,7 @@ function pushOrder() {
                         'Content-Type': 'application/json'
                     }),
                     body: requestBody
-                })
-                .then(handleWebOrderResponse)
+                }).then(handleWebOrderResponse)
         }
     }
 }
