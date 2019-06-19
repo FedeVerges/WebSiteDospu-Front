@@ -23,7 +23,6 @@ function sendSuggestion() {
 
         if (name.checkValidity() && surname.checkValidity() && email.checkValidity() && consult.checkValidity()) {
 
-
             const suggestion1 = new Suggestion(name, surname, email, consult, "2/05/2019", "0");
             const requestBody = JSON.stringify({
                 Name: suggestion1.name,
@@ -45,8 +44,6 @@ function sendSuggestion() {
             alert('Validation Error')
         }
     }
-
-
 
 }
 
