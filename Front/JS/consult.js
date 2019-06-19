@@ -21,7 +21,7 @@ function sendSuggestion() {
         const email = document.getElementById('suggestion-email')
         const consult = document.getElementById('suggestion-suggestion')
 
-        if (name.checkValidity() & surname.checkValidity() & email.checkValidity() & consult.checkValidity()) {
+        if (name.checkValidity() && surname.checkValidity() && email.checkValidity() && consult.checkValidity()) {
 
 
             const suggestion1 = new Suggestion(name, surname, email, consult, "2/05/2019", "123123asdasd")

@@ -22,6 +22,7 @@ function CreateOrderList() {
 
             const list_element = document.createElement("li");
             const link = document.createElement("a");
+            link.setAttribute("href", "http://localhost:9000/api/pdf/order-"+ myJson[key].OrderNumber+".pdf")
             const text = document.createTextNode('Orden Numero:  ' + myJson[key].OrderNumber + ' Tipo de orden: ' + myJson[key].Type + ' Fecha: ' + myJson[key].Date.slice(0,11))
             link.appendChild(text)
             list_element.appendChild(link)
