@@ -80,7 +80,7 @@ function getPartner() {
 const ot1 = new OrderType("50c", "Consulta médica", 50)
 const ot2 = new OrderType("50d", "Consulta psicológica", 100)
 const ot3 = new OrderType("50e", "Sesión de psicoterapia individual", 150)
-const ot4 = new OrderType("50f", "Practica odontológica", 200)
+const ot4 = new OrderType("50f", "Práctica odontológica", 200)
 
 /* OrderWeb */
 /* 
