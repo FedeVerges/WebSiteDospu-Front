@@ -37,21 +37,7 @@ class OrderType {
     }
 }
 
-/* get Lenders */
 
-function getLenders() {
-    const siguiente = document.getElementById("button-Next1")
-    const status = 0
-    const lenderArray = []
-    siguiente.addEventListener('click', async () => {
-
-        const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
-        handleResponseBackend(response)
-        const myJson = await response.json(); //extract JSON from the http response
-        console.log(myJson)
-        putLenders(myJson)
-    })
-}
 /* End get Lenders */
 
 
@@ -65,6 +51,7 @@ function getPartner() {
         const response = await fetch('http://localhost:9000/api/partners/' + DNI);
         handleResponseBackend(response);
         const myJson = await response.json(); //extract JSON from the http response 
+
         showPartner(myJson)
     })
 }
@@ -78,11 +65,10 @@ function getPartner() {
 
 /* OrderType */
 
-const ot1 = new OrderType("50c", "Consulta Médica", 50)
-const ot2 = new OrderType("50d", "Consulta Psicológica", 100)
-const ot3 = new OrderType("50e", "Sesion de Psicoterapia Individual", 150)
-const ot4 = new OrderType("50f", "Practica Odontológica", 200)
-
+const ot1 = new OrderType("50c", "Consulta médica", 50)
+const ot2 = new OrderType("50d", "Consulta psicológica", 100)
+const ot3 = new OrderType("50e", "Sesión de psicoterapia individual", 150)
+const ot4 = new OrderType("50f", "Practica odontológica", 200)
 
 /* OrderWeb */
 /* 
@@ -90,7 +76,7 @@ const ow1 = new WebOrder ("111",ot1,l1,p1)
 const ow2 = new WebOrder ("222",ot2,l2,p2)
  */
 const arregloOrdenes = []
-const arregloPrestadores = []
+let lenders = {}
 const arregloAfiliados = []
 const arregloOrdenesWeb = []
 /* 
@@ -103,20 +89,45 @@ arregloOrdenes.push(ot3);
 arregloOrdenes.push(ot4);
 
 TakeOrder(arregloOrdenes);
-//showPerson(arregloAfiliados);
+
 showOrderCost(arregloOrdenes);
+
+
 getLenders();
+
 getPartner();
 
 showInformation();
 
 pushOrder();
 
-//showHistorial();
-getWebOrdersFromPartner();
+getDnitoHistorial();
+
+CreateOrderList();
 
 camposVacios();
 
+function getDnitoHistorial() {
+    const historial_button = document.getElementById("button-Historial");
+    const dni = null
+    historial_button.addEventListener('click', function(){
+        const DNI = document.getElementById("i-dni").value;
+        document.location.href= "Historial.html?dni=" + DNI;
+    })
+}
+
+/* get Lenders */
+
+function getLenders() {
+    const siguiente = document.getElementById("button-Next1")
+    siguiente.addEventListener('click', async () => {
+        const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
+        handleResponseBackend(response)
+        const myJson = await response.json(); //extract JSON from the http response
+        lenders = myJson
+        putLenders(myJson)
+    })
+}
 
 function TakeOrder(arregloOrdenes) {
     const selector = document.getElementById("tipo-orden");
@@ -143,7 +154,7 @@ function putLenders(arregloPrestadores) {
     }
 }
 
-function pushOrder() {
+function pushOrder(lenders) {
     const resultado = camposVacios();
     if (resultado) {
         alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
@@ -154,13 +165,18 @@ function pushOrder() {
         const lender = new Lender("-", "-", "-");
         const webOrder = new WebOrder(0, "5/5/2019", "123512asdasd", 1231231232, '-', '-', '-');
 
+
+
+
         next_button.onclick = () => {
             afiliado.name = document.getElementById("nombre-afiliado-show").value;
             afiliado.surname = document.getElementById("apellido-afiliado-show").value;
             afiliado.dni = document.getElementById("DNI-afiliado-show").value;
             lender.name = document.getElementById("prestador-show").value;
+            lender.cuil = giveMeLender(lender.name)
             tipoOrden.type = document.getElementById("tipo-orden-show").value;
             tipoOrden.orderCost = document.getElementById("valor-show").value;
+            tipoOrden.orderTypeID = getOrderID(tipoOrden.type)
 
             webOrder.orderType = tipoOrden.type;
             webOrder.lender = lender;
@@ -173,7 +189,7 @@ function pushOrder() {
                         'content-type': 'application/json'
                     }),
                     body: JSON.stringify({
-                        PartnerDni: afiliado.dni,
+                        PartnerDNI: afiliado.dni,
                         PartnerName: afiliado.name,
                         PartnerSurname: afiliado.surname,
                         LenderCuil: lender.cuil,
@@ -182,14 +198,34 @@ function pushOrder() {
                             Type: tipoOrden.type,
                             OrderCost: tipoOrden.orderCost
                         }
-
                     })
-
                 })
                 .then(handleWebOrderResponse)
         }
     }
 }
+
+
+function getOrderID(tipoOrden){
+    for (const key in arregloOrdenes) {
+        if (arregloOrdenes[key].type == tipoOrden) {
+            const element = arregloOrdenes[key].orderTypeID;
+            console.log(element)
+            return element
+        }
+    }
+}
+
+function giveMeLender( name) {
+    for (const lender in lenders) {
+        if(lenders[lender].Name == name){
+            const cuil =lenders[lender].Cuil
+            console.log(cuil)
+            return cuil
+        }
+    }
+}  
+
 /* This method send the dni number to the DOSPU's API and then 
 it give me a confirmation and the name and surname of the  beneficiaries */
 function getBeneficiary() {
@@ -210,7 +246,7 @@ function getBeneficiary() {
 /* HandleResponse */
 function handleWebOrderResponse(response) {
     const statusCode = response.status
-    if (statusCode === 200) {
+    if (statusCode === 202) {
         // The order has been processed correctly
         console.log("Ok response");
         alert("The order has been processed correctly");
@@ -298,10 +334,8 @@ function showInformation() {
         document.getElementById("nombre-afiliado-show").value = document.getElementById("nombre-afiliado").value;
         document.getElementById("apellido-afiliado-show").value = document.getElementById("apellido-afiliado").value;
         document.getElementById("DNI-afiliado-show").value = document.getElementById("i-dni").value;
-
         document.getElementById("tipo-orden-show").value = document.getElementById("tipo-orden").value;
         document.getElementById("prestador-show").value = document.getElementById("prestador").value;
-
         document.getElementById("valor-show").value = document.getElementById("valor").value;
     });
 }
@@ -316,6 +350,7 @@ function givePerson(arrayPartner) {
         }
     }
 }
+ 
 /* 
 function showHistorial() {
     const buttonHistorial = document.getElementById("button-Historial");
