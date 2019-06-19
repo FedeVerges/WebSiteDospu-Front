@@ -1,38 +1,38 @@
 class WebOrder {
     constructor(number, date, AuthCode, BarsCode, orderType, lender, partner) {
-        this.orderNumber = number,
-            this.date = date,
-            this.authCode = AuthCode,
-            this.BarsCode = BarsCode,
-            this.orderType = orderType,
-            this.lender = lender,
-            this.partner = partner;
+        //this.orderNumber = number;
+        this.date = date;
+        //this.authCode = AuthCode;
+        //this.BarsCode = BarsCode;
+        //this.orderType = orderType;
+        this.lender = lender;
+        this.partner = partner;
     }
 }
 class Lender {
     constructor(name, surname, cuil) {
-        this.name = name,
-            this.surname = surname,
+        this.name = name;
+            this.surname = surname;
             this.cuil = cuil;
     }
 }
 
 class Partner {
     constructor(name, surname, dni, birthdate, type, id) {
-        this.name = name,
-            this.surname = surname,
-            this.dni = dni,
-            this.birthdate = birthdate,
-            this.type = type,
-            this.id = id
+        this.name = name;
+            this.surname = surname;
+            this.dni = dni;
+            //this.birthdate = birthdate;
+            this.type = type;
+            this.id = id;
     }
 }
 
 
 class OrderType {
     constructor(id, type, orderCost) {
-        this.orderTypeID = id,
-            this.type = type,
+        this.orderTypeID = id;
+            this.type = type;
             this.orderCost = orderCost;
     }
 }
@@ -40,13 +40,13 @@ class OrderType {
 
 function getLenders() {
     const select = document.getElementById("tipo-orden");
-    const status = 0;
-    const lenderArray = [];
+    //const status = 0;
+    //const lenderArray = [];
     select.addEventListener('change', async () => {
         const response = await fetch('http://localhost:9000/api/lenders/'+select.options[select.selectedIndex].value);
         handleResponseBackend(response);
         const myJson = await response.json(); //extract JSON from the http response
-        lenders = myJson
+        lenders = myJson;
         putLenders(myJson)
     })
 }
@@ -55,7 +55,7 @@ function getLenders() {
 
 /* Get Partners */
 function getPartner() {
-    const siguiente = document.getElementById("button-search")
+    const siguiente = document.getElementById("button-search");
 
 
     siguiente.addEventListener('click', async () => {
@@ -77,20 +77,20 @@ function getPartner() {
 
 /* OrderType */
 
-const ot1 = new OrderType("50c", "Consulta médica", 50)
-const ot2 = new OrderType("50d", "Consulta psicológica", 100)
-const ot3 = new OrderType("50e", "Sesión de psicoterapia individual", 150)
-const ot4 = new OrderType("50f", "Práctica odontológica", 200)
+const ot1 = new OrderType(1, "Consulta médica", 50);
+const ot2 = new OrderType(2, "Consulta psicológica", 100);
+const ot3 = new OrderType(3, "Sesión de psicoterapia individual", 150);
+const ot4 = new OrderType(4, "Práctica odontológica", 200);
 
 /* OrderWeb */
 /* 
 const ow1 = new WebOrder ("111",ot1,l1,p1)
 const ow2 = new WebOrder ("222",ot2,l2,p2)
  */
-const arregloOrdenes = []
-let lenders = {}
-const arregloAfiliados = []
-const arregloOrdenesWeb = []
+const arregloOrdenes = [];
+let lenders = {};
+//const arregloAfiliados = [];
+//const arregloOrdenesWeb = [];
 /* 
 arregloOrdenesWeb.push(ow1);
 arregloAfiliados.push(ow2);
@@ -121,7 +121,7 @@ camposVacios();
 
 function getDnitoHistorial() {
     const historial_button = document.getElementById("button-Historial");
-    const dni = null
+    //const dni = null;
     historial_button.addEventListener('click', function(){
         const DNI = document.getElementById("i-dni").value;
         document.location.href= "Historial.html?dni=" + DNI;
@@ -154,7 +154,7 @@ function putLenders(arregloPrestadores) {
 }
 function removeOptions(selectbox)
 {
-    var i;
+    let i;
     for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
     {
         selectbox.remove(i);
@@ -180,14 +180,21 @@ function pushOrder(lenders) {
             afiliado.surname = document.getElementById("apellido-afiliado-show").value;
             afiliado.dni = document.getElementById("DNI-afiliado-show").value;
             lender.name = document.getElementById("prestador-show").value;
-            lender.cuil = giveMeLender(lender.name)
+            lender.cuil = giveMeLender(lender.name);
             tipoOrden.type = document.getElementById("tipo-orden-show").value;
             tipoOrden.orderCost = document.getElementById("valor-show").value;
-            tipoOrden.orderTypeID = getOrderID(tipoOrden.type)
+            tipoOrden.orderTypeID = getOrderID(tipoOrden.type);
 
             webOrder.orderType = tipoOrden.type;
             webOrder.lender = lender;
             webOrder.partner = afiliado;
+            console.log("afiliado.dni "+afiliado.dni);
+            console.log("afiliado.name "+afiliado.name);
+            console.log("afiliado.surname "+afiliado.surname);
+            console.log("lender.cuil "+lender.cuil);
+            console.log("tipoOrden.orderTypeID "+tipoOrden.orderTypeID);
+            console.log("tipoOrden.type "+ tipoOrden.type);
+            console.log("tipoOrden.orderCost "+tipoOrden.orderCost);
 
             fetch("http://localhost:9000/api/weborder", {
                     method: 'post',
@@ -196,14 +203,14 @@ function pushOrder(lenders) {
                         'content-type': 'application/json'
                     }),
                     body: JSON.stringify({
-                        PartnerDNI: afiliado.dni,
+                        PartnerDNI: parseInt(afiliado.dni),
                         PartnerName: afiliado.name,
                         PartnerSurname: afiliado.surname,
-                        LenderCuil: lender.cuil,
+                        LenderCUIL: lender.cuil,
                         OrderType: {
                             OrderTypeId: tipoOrden.orderTypeID,
                             Type: tipoOrden.type,
-                            OrderCost: tipoOrden.orderCost
+                            OrderCost: parseFloat(tipoOrden.orderCost)
                         }
                     })
                 })
@@ -215,9 +222,9 @@ function pushOrder(lenders) {
 
 function getOrderID(tipoOrden){
     for (const key in arregloOrdenes) {
-        if (arregloOrdenes[key].type == tipoOrden) {
+        if (arregloOrdenes[key].type === tipoOrden) {
             const element = arregloOrdenes[key].orderTypeID;
-            console.log(element)
+            console.log(element);
             return element
         }
     }
@@ -225,9 +232,9 @@ function getOrderID(tipoOrden){
 
 function giveMeLender( name) {
     for (const lender in lenders) {
-        if(lenders[lender].Name == name){
-            const cuil =lenders[lender].Cuil
-            console.log(cuil)
+        if(lenders[lender].Name === name){
+            const cuil =lenders[lender].Cuil;
+            console.log(cuil);
             return cuil
         }
     }
@@ -252,7 +259,7 @@ function getBeneficiary() {
 
 /* HandleResponse */
 function handleWebOrderResponse(response) {
-    const statusCode = response.status
+    const statusCode = response.status;
     if (statusCode === 202) {
         // The order has been processed correctly
         console.log("Ok response");
@@ -261,13 +268,13 @@ function handleWebOrderResponse(response) {
         // Diferent types of errors.        
         switch (statusCode) {
             case 404:
-                alert("WebForm error, please check values")
+                alert("WebForm error, please check values");
                 break;
             case 500:
-                alert("Database error, please call technical support")
+                alert("Database error, please call technical support");
                 break;
             default:
-                alert("Default Error")
+                alert("Default Error");
                 break;
         }
         response.json()
@@ -277,20 +284,20 @@ function handleWebOrderResponse(response) {
 
 
 function handleResponseBackend(response) {
-    const statusCode = response.status
+    const statusCode = response.status;
     if (statusCode === 200) {
         console.log("Success")
     } else {
         // Diferent types of errors.        
         switch (statusCode) {
             case 404:
-                alert("Entry error, please check values (404)")
+                alert("Entry error, please check values (404)");
                 break;
             case 500:
-                alert("Database error, please call technical support (500)")
+                alert("Database error, please call technical support (500)");
                 break;
             default:
-                alert("Default Error")
+                alert("Default Error");
                 break;
         }
         response.json()
@@ -305,7 +312,7 @@ function showOrderCost(arrayOrder) {
         function () {
             const selectedOption = this.options[select.selectedIndex];
             for (let i = 0; i < arrayOrder.length; i++) {
-                if (arrayOrder[i].type == selectedOption.text) {
+                if (arrayOrder[i].type === selectedOption.text) {
                     document.getElementById("valor").value = arrayOrder[i].orderCost;
                 }
             }
@@ -350,7 +357,7 @@ function showInformation() {
 function givePerson(arrayPartner) {
     const DNI = document.getElementById("i-dni").value;
     for (let i = 0; i < arrayPartner.length; i++) {
-        if (arrayPartner[i].dni == DNI) {
+        if (arrayPartner[i].dni === DNI) {
             return arrayPartner[i];
         } else {
             return null;
@@ -370,9 +377,5 @@ function showHistorial() {
 function camposVacios() {
     const tipoOrden = document.getElementById("tipo-orden-show").value;
     const prestador = document.getElementById("prestador-show").value;
-    if (tipoOrden == "..." & prestador == "...") {
-        return true;
-    } else {
-        return false;
-    }
+    return (tipoOrden === "..." & prestador === "...");
 }
