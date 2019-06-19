@@ -37,7 +37,6 @@ class OrderType {
     }
 }
 
-
 /* End get Lenders */
 
 
@@ -143,14 +142,21 @@ function TakeOrder(arregloOrdenes) {
 
 function putLenders(arregloPrestadores) {
     const selector = document.getElementById("prestador");
-    console.log(selector)
-
+    removeOptions(selector);
     for (let index = 0; index < arregloPrestadores.length; index++) {
         const orderElement = document.createElement("option");
         orderElement.setAttribute("value", arregloPrestadores[index].Name);
         const texto = document.createTextNode(arregloPrestadores[index].Name + ' ' + arregloPrestadores[index].Surname);
         orderElement.appendChild(texto);
         selector.appendChild(orderElement);
+    }
+}
+function removeOptions(selectbox)
+{
+    var i;
+    for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
+    {
+        selectbox.remove(i);
     }
 }
 
