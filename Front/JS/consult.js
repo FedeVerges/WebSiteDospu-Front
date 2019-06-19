@@ -15,14 +15,14 @@ function sendSuggestion() {
     const sendButton = document.getElementById('suggestion-send-button');
 
     sendButton.onclick = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         
         const name = document.getElementById('suggestion-name').value;
         const surname = document.getElementById('suggestion-surname').value;
         const email = document.getElementById('suggestion-email').value;
         const consult = document.getElementById('suggestion-suggestion').value;
 
-        const suggestion1 = new Suggestion(name, surname, email, consult, "2/05/2019", "0");
+        const suggestion1 = new Suggestion(name, surname, email, consult, "2/05/2019", 0);
         const requestBody = JSON.stringify({
             Name: suggestion1.name,
             Surname: suggestion1.surname,
