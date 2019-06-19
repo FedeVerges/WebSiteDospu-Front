@@ -40,15 +40,14 @@ class OrderType {
 /* get Lenders */
 
 function getLenders() {
-    const siguiente = document.getElementById("button-Next1")
-    const status = 0
-    const lenderArray = []
-    siguiente.addEventListener('click', async () => {
-
-        const response = await fetch('http://localhost:9000/api/lenders/Consulta%20m%C3%A9dica/');
-        handleResponseBackend(response)
+    const select = document.getElementById("tipo-orden");
+    const status = 0;
+    const lenderArray = [];
+    select.addEventListener('change', async () => {
+        const response = await fetch('http://localhost:9000/api/lenders/'+select.options[select.selectedIndex].value);
+        handleResponseBackend(response);
         const myJson = await response.json(); //extract JSON from the http response
-        console.log(myJson)
+        //console.log(myJson);
         putLenders(myJson)
     })
 }
@@ -78,10 +77,10 @@ function getPartner() {
 
 /* OrderType */
 
-const ot1 = new OrderType("50c", "Consulta Médica", 50)
-const ot2 = new OrderType("50d", "Consulta Psicológica", 100)
-const ot3 = new OrderType("50e", "Sesion de Psicoterapia Individual", 150)
-const ot4 = new OrderType("50f", "Practica Odontológica", 200)
+const ot1 = new OrderType("50c", "Consulta médica", 50)
+const ot2 = new OrderType("50d", "Consulta psicológica", 100)
+const ot3 = new OrderType("50e", "Sesión de psicoterapia individual", 150)
+const ot4 = new OrderType("50f", "Práctica odontológica", 200)
 
 
 /* OrderWeb */
@@ -132,14 +131,21 @@ function TakeOrder(arregloOrdenes) {
 
 function putLenders(arregloPrestadores) {
     const selector = document.getElementById("prestador");
-    console.log(selector)
-
+    removeOptions(selector);
     for (let index = 0; index < arregloPrestadores.length; index++) {
         const orderElement = document.createElement("option");
         orderElement.setAttribute("value", arregloPrestadores[index].Name);
         const texto = document.createTextNode(arregloPrestadores[index].Name + ' ' + arregloPrestadores[index].Surname);
         orderElement.appendChild(texto);
         selector.appendChild(orderElement);
+    }
+}
+function removeOptions(selectbox)
+{
+    var i;
+    for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
+    {
+        selectbox.remove(i);
     }
 }
 
