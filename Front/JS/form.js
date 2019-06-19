@@ -188,10 +188,20 @@ function pushOrder(lenders) {
             webOrder.orderType = tipoOrden.type;
             webOrder.lender = lender;
             webOrder.partner = afiliado;
+           
+            console.log('JSON:   ')
+            console.log(afiliado.dni)
+            console.log(afiliado.name)
+            console.log(afiliado.surname)
+            console.log(lender.cuil)
+            console.log(tipoOrden.orderTypeID)
+            console.log(tipoOrden.type)
+            console.log(tipoOrden.orderCost)
+
 
             fetch("http://localhost:9000/api/weborder", {
                     method: 'post',
-                    mode: "no-cors",
+                    mode: "cors",
                     headers: new Headers({
                         'content-type': 'application/json'
                     }),
