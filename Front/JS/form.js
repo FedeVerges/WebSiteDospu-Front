@@ -119,47 +119,52 @@ function removeOptions(selectbox) {
 }
 
 function pushOrder() {
-    const resultado = camposVacios();
-    if (resultado) {
-        alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
-    } else {
         const next_button = document.getElementById("finish-order");
         const afiliado = new Partner("-", "-", "-", "-", "-");
         const tipoOrden = new OrderType("-", "-", 0);
         const lender = new Lender("-", "-", "-");
 
-        next_button.onclick = () => {
-            afiliado.name = document.getElementById("nombre-afiliado-show").value;
-            afiliado.surname = document.getElementById("apellido-afiliado-show").value;
-            afiliado.dni = document.getElementById("DNI-afiliado-show").value;
-            lender.name = document.getElementById("prestador-show").value;
-            lender.cuil = giveMeLender(lender.name);
-            tipoOrden.type = document.getElementById("tipo-orden-show").value;
-            tipoOrden.orderCost = document.getElementById("valor-show").value;
-            tipoOrden.orderTypeID = getOrderID(tipoOrden.type);
+        next_button.onclick = async () => {
+            const resultado = camposVacios();
+            if (resultado) {
+                alert("Tipo de Orden y/o Prestador esta/n vacio/s. Seleccione uno para continuar");
+            }
+            else {
+                afiliado.name = document.getElementById("nombre-afiliado-show").value;
+                afiliado.surname = document.getElementById("apellido-afiliado-show").value;
+                afiliado.dni = document.getElementById("DNI-afiliado-show").value;
+                lender.name = document.getElementById("prestador-show").value;
+                lender.cuil = giveMeLender(lender.name);
+                tipoOrden.type = document.getElementById("tipo-orden-show").value;
+                tipoOrden.orderCost = document.getElementById("valor-show").value;
+                tipoOrden.orderTypeID = getOrderID(tipoOrden.type);
 
-            const requestBody = JSON.stringify({
-                PartnerDNI: parseInt(afiliado.dni),
-                PartnerName: afiliado.name,
-                PartnerSurname: afiliado.surname,
-                LenderCuil: lender.cuil,
-                OrderType: {
-                    OrderTypeId: tipoOrden.orderTypeID,
-                    Type: tipoOrden.type,
-                    OrderCost: parseFloat(tipoOrden.orderCost)
-                }
-            });
+                const requestBody = JSON.stringify({
+                    PartnerDNI: parseInt(afiliado.dni),
+                    PartnerName: afiliado.name,
+                    PartnerSurname: afiliado.surname,
+                    LenderCuil: lender.cuil,
+                    OrderType: {
+                        OrderTypeId: tipoOrden.orderTypeID,
+                        Type: tipoOrden.type,
+                        OrderCost: parseFloat(tipoOrden.orderCost)
+                    }
+                });
 
-            fetch("http://localhost:9000/api/weborder", {
-                method: 'post',
-                /* Agregar mode: "no-cors" rompe el backend. No se por que */
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                body: requestBody
-            }).then(handleWebOrderPost)
+                fetch("http://localhost:9000/api/weborder", {
+                    method: 'post',
+                    /* Agregar mode: "no-cors" rompe el backend. No se por que */
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    }),
+                    body: requestBody
+                }).then(handleWebOrderPost)
+
+                const response = await fetch('http://localhost:9000/api/partners/weborders/' + afiliado.dni)
+                const myJson = await response.json();
+                document.location.href = "http://localhost:9000/api/pdf/order-" + myJson[myJson.length - 1].OrderNumber + ".pdf"
+            }
         }
-    }
 }
 
 
@@ -247,5 +252,5 @@ function givePerson(arrayPartner) {
 function camposVacios() {
     const tipoOrden = document.getElementById("tipo-orden-show").value;
     const prestador = document.getElementById("prestador-show").value;
-    return (tipoOrden === "..." & prestador === "...");
+    return (tipoOrden === "..." || prestador === "...");
 }
