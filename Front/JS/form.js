@@ -7,7 +7,7 @@ class Lender {
 }
 
 class Partner {
-    constructor(name, surname, dni,  type, id) {
+    constructor(name, surname, dni, type, id) {
         this.name = name;
         this.surname = surname;
         this.dni = dni;
@@ -30,84 +30,63 @@ function getLenders() {
     const select = document.getElementById("tipo-orden");
     select.addEventListener('change', async () => {
         const response = await fetch('http://localhost:9000/api/lenders/' + select.options[select.selectedIndex].value);
-        handleResponseBackend(response);
-        const myJson = await response.json(); //extract JSON from the http response
-        lenders = myJson;
-        putLenders(myJson)
+        if (response.status !== 202) {
+            alert("No se han podido cargar los prestadores.")
+            
+        } else {
+            lenders = await response.json();
+            putLenders(lenders);
+        }
     })
 }
 /* End get Lenders */
-
+// 29388541
 
 /* Get Partners */
 function getPartner() {
     const siguiente = document.getElementById("button-search");
 
-
     siguiente.addEventListener('click', async () => {
         const DNI = document.getElementById("i-dni").value;
         const response = await fetch('http://localhost:9000/api/partners/' + DNI);
-        handleResponseBackend(response);
-        const myJson = await response.json(); //extract JSON from the http response 
-
-        showPartner(myJson)
+        if (response.status !== 202) {
+            alert("No se ha podido verificar el beneficiario.")
+        } else {
+            const myJson = await response.json();
+            showPartner(myJson)
+        }
     })
 }
 
 /* End Get Partners */
 
-/* Partners */
-// const p1 = new Partner("Federico", "Verges", "41221778", "5/5/2019", "Titular", "12312312");
-// const p2 = new Partner("Alfredo", "Verges", "41221777", "10/5/2019", "Titular", "22312312");
+const arregloOrdenes = [
+    new OrderType(1, "Consulta médica", 50),
+    new OrderType(2, "Consulta psicológica", 100),
+    new OrderType(3, "Sesión de psicoterapia individual", 150),
+    new OrderType(4, "Práctica odontológica", 200)
+];
 
-
-/* OrderType */
-
-const ot1 = new OrderType(1, "Consulta médica", 50);
-const ot2 = new OrderType(2, "Consulta psicológica", 100);
-const ot3 = new OrderType(3, "Sesión de psicoterapia individual", 150);
-const ot4 = new OrderType(4, "Práctica odontológica", 200);
-
-/* OrderWeb */
-/* 
-const ow1 = new WebOrder ("111",ot1,l1,p1)
-const ow2 = new WebOrder ("222",ot2,l2,p2)
- */
-const arregloOrdenes = [];
 let lenders;
 
-arregloOrdenes.push(ot1);
-arregloOrdenes.push(ot2);
-arregloOrdenes.push(ot3);
-arregloOrdenes.push(ot4);
-
 TakeOrder(arregloOrdenes);
-
 showOrderCost(arregloOrdenes);
 
-
 getLenders();
-
 getPartner();
-
 showInformation();
-
 pushOrder();
-
 getDnitoHistorial();
-
 CreateOrderList();
-
 camposVacios();
 
 function getDnitoHistorial() {
     const historial_button = document.getElementById("button-Historial");
-    historial_button.addEventListener('click', function () {
+    historial_button.onclick = () => {
         const DNI = document.getElementById("i-dni").value;
         document.location.href = "Historial.html?dni=" + DNI;
-    })
+    }
 }
-
 
 function TakeOrder(arregloOrdenes) {
     const selector = document.getElementById("tipo-orden");
@@ -172,13 +151,13 @@ function pushOrder() {
             });
 
             fetch("http://localhost:9000/api/weborder", {
-                    method: 'post',
-                    /* Agregar mode: "no-cors" rompe el backend. No se por que */
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    }),
-                    body: requestBody
-                }).then(handleWebOrderResponse)
+                method: 'post',
+                /* Agregar mode: "no-cors" rompe el backend. No se por que */
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: requestBody
+            }).then(handleWebOrderPost)
         }
     }
 }
@@ -187,9 +166,7 @@ function pushOrder() {
 function getOrderID(tipoOrden) {
     for (const key in arregloOrdenes) {
         if (arregloOrdenes[key].type === tipoOrden) {
-            const element = arregloOrdenes[key].orderTypeID;
-            console.log(element);
-            return element
+            return arregloOrdenes[key].orderTypeID;
         }
     }
 }
@@ -197,24 +174,19 @@ function getOrderID(tipoOrden) {
 function giveMeLender(name) {
     for (const lender in lenders) {
         if (lenders[lender].Name === name) {
-            const cuil = lenders[lender].Cuil;
-            console.log(cuil);
-            return cuil
+            return lenders[lender].Cuil;
         }
     }
 }
 
-/* HandleResponse */
-function handleWebOrderResponse(response) {
+async function handleWebOrderPost(response) {
     const statusCode = response.status;
     if (statusCode === 202) {
-        // The order has been processed correctly
-        alert("La orden ha sido procesada correctamente.");
+        alert("Se ha procesado correctamente su Orden.")
     } else {
-        // Diferent types of errors.        
         switch (statusCode) {
             case 404:
-                alert("Error en el formulario");
+                alert("Error en los datos de entrada.");
                 break;
             case 500:
                 alert("Error en la base de datos. Contacte a un técnico.");
@@ -223,35 +195,12 @@ function handleWebOrderResponse(response) {
                 alert("Error desconocido.");
                 break;
         }
-        response.json()
-            .then(errorMap => console.log(errorMap))
     }
+    return await response.json();
 }
 
 
-function handleResponseBackend(response) {
-    const statusCode = response.status;
-    if (statusCode === 200) {
-        console.log("Success")
-    } else {
-        // Diferent types of errors.        
-        switch (statusCode) {
-            case 404:
-                alert("Error de entrada.");
-                break;
-            case 500:
-                alert("Error en la base de datos. Contacte a un técnico.");
-                break;
-            default:
-                alert("Error desconocido.");
-                break;
-        }
-        response.json()
-            .then(errorMap => console.log(errorMap))
-    }
-}
 /*Formulario */
-
 function showOrderCost(arrayOrder) {
     const select = document.getElementById("tipo-orden");
     select.addEventListener('change',
